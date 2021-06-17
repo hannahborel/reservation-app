@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://code.jquery.com/jquery.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+      <title>Document</title>
+</head>
+<body>
+
+      <div class="container">
+            <div class="container p-5 bg-light">
+                  <h1 class="text-center fs-3 mb-3">Make Your Reservation</h1>
+                  <br>
+
+                  <div class="text-center">
+
+                        <a href="/tables"><button type="button" class="btn btn-lg btn-primary"><span><i class="bi bi-card-list"></i></span> View Tables</button></a>
+                        
+                        <a href="/"><button type="button" class="btn btn-lg border"><span><i class="bi bi-house-door-fill"></i></i></span> </button></a>
+                  </div>
+            </div>
+
+            <div class="card my-4">
+                  <div class="card-header">Table Reservation</div>
+                  <div class="card-body">
+                        <div class="mb-3">
+                              <label for="reserve-name" class="form-label">Name</label>
+                              <input type="text" class="form-control" id="reserve-name" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="mb-3">
+                              <label for="reserve-phone" class="form-label">Phone Number</label>
+                              <input type="text" class="form-control" id="reserve-phone">
+                        </div>
+
+                        <div class="mb-3">
+                              <label for="reserve-email" class="form-label">Email</label>
+                              <input type="text" class="form-control" id="reserve-email">
+                        </div>
+
+                        <div class="mb-3">
+                              <label for="reserve-unique-id" class="form-label">Unique ID</label>
+                              <input type="text" class="form-control" id="reserve-unique-id">
+                        </div>
+
+                        <button type="submit" class=" submit btn btn-primary">Submit</button>
+                  </div>
+            </div>
+   
+            <footer class="footer">
+                  <div class="container">
+                        <p><a href="#">API Table Link</a></p>
+                  </div>
+            </footer>
+       
+      </div>
+</body>
+
+<script>
+
+
+var newReservation = {}
+
+            $('.submit').on("click", function(){
+
+                  console.log("clicked")
+                  
+                  var newReservation  =  {
+                        customerName:  $('#reserve-name').val().trim(),
+                        customerPhone:  $('#reserve-phone').val().trim(),
+                        customerEmail:  $('#reserve-email').val().trim(),
+                        customerID:  $('#reserve-unique-id').val().trim()
+                  };
+
+                 console.log(newReservation)
+
+                 var currentURL = window.location.origin;
+
+                 $.post(currentURL = "/api/tables", newReservation, function(data){
+
+                  console.log("Data: ", data)
+
+                  if (data) {
+                        alert("You are officially booked")
+                  }else{
+                        alert("Reservations are full. You are now on the Waiting List")
+                  }
+
+                  $('#reserve-name').val('')
+                  $('#reserve-phone').val('')
+                  $('#reserve-email').val('')
+                  $('#reserve-unique-id').val('')
+
+                 })
+                 return false;
+            
+            })
+
+
+            
+
+</script>
+
+</html>
