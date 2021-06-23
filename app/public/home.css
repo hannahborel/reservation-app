@@ -1,0 +1,91 @@
+*, *::before, *::after {
+      box-sizing: border-box;
+  }
+
+  body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Roboto',sans-serif;
+      font-size: 1rem;
+      background-image: url(./img/slate-bg-320.png
+      );
+      background-repeat: no-repeat;
+  }
+
+  .row{
+      display: flex;
+      justify-content: space-between;
+  }
+
+  .container{
+      margin: auto;
+      width:  90%;
+      max-width: 320px;
+}
+
+.dashboard{
+      margin: auto;
+      background-image: linear-gradient(180deg, #FFFFFF 7%, rgba(217,210,226,0.14) 43%, rgba(243,243,243,0.00) 80%);
+    border-radius: 26.76px;
+    padding: 1rem;
+    backdrop-filter: blur(3px);
+}
+
+.db-data{
+      background: rgba(255,255,255,0.87);
+      border-radius: 12.32px;
+      margin-top: .7rem;
+}
+
+.db-title{
+      font-family: SFProDisplay-Semibold;
+      font-size: 16.08px;
+      color: #1E1B1B;
+      letter-spacing: 0.71px;
+  }
+
+p, h3{
+      margin: 0;
+}
+
+.date, .time{
+      text-align: center;
+}
+
+.date{
+      width: 35%;
+      padding: .5rem .7rem;
+}
+
+.time{
+      width: 60%;
+      padding-top: 1rem;
+}
+
+
+.text-content{
+      padding: 1rem 1rem .7rem 1rem;
+}
+
+.data-title{
+      font-size: 14px;
+      color: #191818;
+      letter-spacing: 0.83px;
+      margin-bottom: 6px;
+}
+
+.data-result-primiary{
+      font-size: 12px;
+      color: #918F8F;
+      letter-spacing: 0.71px;
+      margin-bottom: 1.5rem;
+}
+
+.data-result-secondary{
+      font-size: 10px;
+      color: #C0A4CB;
+      letter-spacing: 0.71px;
+}
+
+
+
