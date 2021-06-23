@@ -21,8 +21,13 @@
       margin: auto;
       width:  90%;
       max-width: 320px;
+      padding: 1rem 0 0 0;
 }
 
+header{
+      margin-bottom: 2rem;
+      color: #f3f3f3;
+}
 .dashboard{
       margin: auto;
       background-image: linear-gradient(180deg, #FFFFFF 7%, rgba(217,210,226,0.14) 43%, rgba(243,243,243,0.00) 80%);
@@ -62,9 +67,12 @@ p, h3{
       padding-top: 1rem;
 }
 
+.tertiary{
+      padding: 1rem 1rem .7rem 1rem;
+}
 
 .text-content{
-      padding: 1rem 1rem .7rem 1rem;
+      width: 60%;
 }
 
 .data-title{
@@ -85,6 +93,20 @@ p, h3{
       font-size: 10px;
       color: #C0A4CB;
       letter-spacing: 0.71px;
+}
+
+.data-icon{
+      align-self: center;
+      text-align: center;
+}
+
+footer{
+      opacity: 0.96;
+      background: #F8F7F6;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 1rem 4rem 1.2rem;
 }
 
 

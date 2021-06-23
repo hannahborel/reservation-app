@@ -14,6 +14,10 @@
 <body>
 
      <main class="container">
+           <header class="row">
+                 <p>slate</p>
+                 <img src ="static/img/icons/info-circle.png">
+           </header>
            <div class="dashboard">
                  <div class="db-content">
                        
@@ -31,8 +35,8 @@
                                     </div>
                               </section>
 
-                              <section class="data-tertiary" id="reservations">
-                                    <div class="db-data text-content">
+                              <section class="db-data tertiary row" id="reservations">
+                                    <div class=" text-content">
 
                                           <h3 class="data-title">Reservations</h3>
                                           <p class="data-result-primiary">
@@ -41,23 +45,40 @@
                                           <p class="data-result-secondary">0/10</p>
                                           </div>
 
-                                          <img src="img/icons/squares-light.png" alt="reservations icon">
+                                          <div class="data-icon">
+                                                <img src="static/img/icons/squares-green.png" alt="reservations icon">
+                                          </div>
 
                               </section>
 
-                              <section class="data-tertiary" id="waitList">
-                                    <div class="db-data text-content">
+                              <section class="db-data tertiary row" id="waitList">
+
+                                    <div class="text-content">
                                           <h3 class="data-title">Waitlist</h3>
                                           <p class="data-result-primiary">
                                                 <span id="wait-list-result">0</span> Patrons Waiting
                                           </p>
                                           <p class="data-result-secondary">0/10</p>
                                     </div>
+
+                                    <div class="data-icon">
+                                          <img src="static/img/icons/waitlist-grey.png" alt="reservations icon">
+                                    </div>
                                      
                               </section>
                   </div>
             </div>
       </main>
+
+      <footer>
+            <nav>
+                  <div class="nav-content row">
+                        <img src="static/img/icons/home-selected.png" alt="reservations icon">
+                        <img src="static/img/icons/squares-inactive.png" alt="reservations icon">
+                        <img src="static/img/icons/add-inactive.png" alt="reservations icon">
+                  </div>
+            </nav>
+      </footer>
     
       
 </body>
