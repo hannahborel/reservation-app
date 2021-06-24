@@ -4,13 +4,15 @@
 
   body {
       min-height: 100vh;
+      min-width: 100vw;
       margin: 0;
-      font-family: SFProDisplay-Semibold;
+      font-family: SFProDisplay-Semibold, 'Roboto', sans-serif;
       font-size: 1rem;
-      background-image: url(./img/slate-bg-320.png
-      );
+      background-image: url(./img/slate-bg-320.png);
       background-repeat: no-repeat;
+      background-size: cover;
   }
+  
 
   .row{
       display: flex;
