@@ -14,10 +14,14 @@
 <body>
 
      <main class="container">
+
            <header class="row">
-                 <p>slate</p>
-                 <img src ="static/img/icons/info-circle.png">
+                 <div class="header-logo">
+                       <p>slate</p>
+                 </div>
+                 <div class="header-info"><img src ="static/img/icons/info-circle.png"></div>
            </header>
+
            <div class="dashboard">
                  <div class="db-content">
                        
@@ -26,12 +30,14 @@
                               <section class="data-primary row">
 
                                     <div class="db-data date">
-                                          <p id= day-of-week>Mon</p>
-                                          <p id="day-num">27</p>
+                                          <p id= day-of-week></p>
+                                          <p id="day-num"></p>
                                     </div>
 
-                                    <div class="db-data time">
-                                          <p id="time">12:00</p>
+                                    <div class="db-data time row">
+                                          <div class="time-container-primary">
+                                                <p id="time"></p>
+                                          </div>
                                     </div>
                               </section>
 
@@ -73,13 +79,118 @@
       <footer>
             <nav>
                   <div class="nav-content row">
-                        <img src="static/img/icons/home-selected.png" alt="reservations icon">
-                        <img src="static/img/icons/squares-inactive.png" alt="reservations icon">
-                        <img src="static/img/icons/add-inactive.png" alt="reservations icon">
+                        <a href="/"><img src="static/img/icons/home-selected.png" alt="home icon"></a>
+                        <a href="/tables"><img src="static/img/icons/squares-inactive.png" alt="reservations icon"></a>
+                        <a href="/reserve"><img src="static/img/icons/add-inactive.png" alt="reservations icon"></a>
                   </div>
             </nav>
       </footer>
-    
-      
 </body>
+
+<script>
+
+const date = new Date()
+let day;
+let dayInput = date.getDay()
+
+const timeObj = {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+};
+
+let currentTime =  new Intl.DateTimeFormat('en-US', timeObj).format(date);
+
+const dateObj = {
+      date: date.getDate(),
+}
+
+function getDayOfWeek(){
+
+      switch (dayInput) {
+      case 0:
+            day = "SUN";
+            break;
+      case 1:
+            day = "MON";
+            break;
+      case 2:
+            day = "TUE";
+            break;
+      case 3:
+            day = "WED";
+            break;
+      case 4:
+            day = "THU";
+            break;
+      case 5:
+            day = "FRI";
+            break;
+      case  6:
+            day = "Saturday";
+      }
+
+      dateObj.dayOfWeek = day;
+
+      console.log(dateObj)
+}
+
+function findAmPm(){
+      let timeString = currentTime;
+      const am = "AM";
+      const pm = "PM";
+      let timeArray = timeString.split(' ');
+      const timeOfDay = timeArray[1];
+
+      if (timeOfDay == am){
+            console.log("if statement")
+            $('.time').append("<div class='time-container-secondary'><span id='time-am'>"+ am + "<span><span id='time-pm'>"+ pm + "<span></div>")
+      } else{
+            $('.time').append("<div class='time-container-secondary'><span id='time-pm'>" + pm + "</span> <span id='time-am'>" + am +  "</span></div>")
+      }
+}
+     
+function printDateData(){
+
+      const dayTarget = $("#day-of-week")
+      const dateTarget = $("#day-num")
+      const timeTarget = $("#time")
+
+      dayTarget.append(dateObj.dayOfWeek)
+      dateTarget.append(dateObj.date)
+      timeTarget.append("<span id ='timeOutput'>" + dateObj.time +"</span>")
+
+}
+
+function formatTime(){
+      let hours = date.getHours().toString()
+      let hoursArr = hours.split('')
+      let num = 9
+      let min = num.toString()
+      let minArr = min.split('')
+
+      if(hoursArr.length == 2 & minArr.length == 2){
+            dateObj.time = hours +":"+ min;
+            console.log(dateObj.time)
+      }else if(hoursArr.length == 1 & minArr.length == 2){
+            dateObj.time = "0"+ hours +":"+ min;
+            console.log(dateObj.time)
+      } else if(hoursArr.length == 2 & minArr.length == 1){
+            dateObj.time =  hours +":"+ "0"+ min;
+            console.log(dateObj.time)
+      } else{
+            dateObj.time =  "0"+hours +":"+ "0"+ min;
+            console.log(dateObj.time)
+      }
+      
+}
+
+
+formatTime();
+getDayOfWeek();
+printDateData();
+findAmPm()
+
+
+</script>
 </html>

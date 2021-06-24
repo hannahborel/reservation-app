@@ -5,7 +5,7 @@
   body {
       min-height: 100vh;
       margin: 0;
-      font-family: 'Roboto',sans-serif;
+      font-family: SFProDisplay-Semibold;
       font-size: 1rem;
       background-image: url(./img/slate-bg-320.png
       );
@@ -28,12 +28,29 @@ header{
       margin-bottom: 2rem;
       color: #f3f3f3;
 }
+
+.header-logo{
+      text-align: center;
+      background: rgba(192, 164, 203, 0.8);
+      padding: 15px 8px;
+      border-radius: 50%;
+}
+
+.header-logo p{
+      font-size: 12px;
+      letter-spacing: 0.7px ;
+}
+
+.header-info img{
+      padding-top: 15px;
+}
+
 .dashboard{
       margin: auto;
       background-image: linear-gradient(180deg, #FFFFFF 7%, rgba(217,210,226,0.14) 43%, rgba(243,243,243,0.00) 80%);
-    border-radius: 26.76px;
-    padding: 1rem;
-    backdrop-filter: blur(3px);
+       border-radius: 26.76px;
+      padding: 1rem;
+      backdrop-filter: blur(3px);
 }
 
 .db-data{
@@ -58,17 +75,56 @@ p, h3{
 }
 
 .date{
-      width: 35%;
-      padding: .5rem .7rem;
+      width: 32%;
+      padding: .7rem .7rem;
 }
 
+      #day-of-week{
+            font-family: SFProDisplay-Bold;
+            font-size:1.20rem;
+            color: #A88CB3;
+            letter-spacing: 0.28px;
+            line-height: 1;
+      }
+
+      #day-num{
+      font-family: SFProDisplay-Medium;
+      font-size: 43.8px;
+      letter-spacing: 0.7px;
+      line-height: 1;
+      }
+
 .time{
-      width: 60%;
-      padding-top: 1rem;
+      width: 63%;
+      padding: 1rem .5rem;
+}
+
+.time-container-primary{
+
+      font-family: SFProDisplay-Semibold;
+      font-size: 43.08px;
+      letter-spacing: -1.5px;
+      line-height: 43.83px;
+      width: 70%;
+      align-self: center;
+}
+
+.time-container-secondary{
+      font-size: 10px;
+      width: 25%;
+      align-self: center;
+}
+
+.time-container-secondary span{
+      display: block;
 }
 
 .tertiary{
       padding: 1rem 1rem .7rem 1rem;
+}
+
+.tertiary + .tertiary{
+      margin-bottom: 1rem;
 }
 
 .text-content{
