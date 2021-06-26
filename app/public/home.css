@@ -3,10 +3,10 @@
   }
 
   body {
-      min-height: 100vh;
+      min-height: 812px;
       min-width: 100vw;
       margin: 0;
-      font-family: SFProDisplay-Semibold, 'Roboto', sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 1rem;
       background-image: url(./img/slate-bg-320.png);
       background-repeat: no-repeat;
@@ -19,6 +19,8 @@
       justify-content: space-between;
   }
 
+
+
   .container{
       margin: auto;
       width:  90%;
@@ -26,27 +28,31 @@
       padding: 1rem 0 0 0;
 }
 
-header{
-      margin-bottom: 2rem;
-      color: #f3f3f3;
+p, h3{
+      margin: 0;
 }
 
-.header-logo{
-      text-align: center;
-      background: rgba(192, 164, 203, 0.8);
-      padding: 15px 8px;
-      border-radius: 50%;
-}
+      header{
+            margin-bottom: 2rem;
+            color: #f3f3f3;
+      }
 
-.header-logo p{
-      font-size: 10px;
-      letter-spacing: 0.7px;
-      margin-bottom: 1px;
-}
+            .header-logo{
+                  text-align: center;
+                  background: rgba(192, 164, 203, 0.8);
+                  padding: 15px 8px;
+                  border-radius: 50%;
+            }
 
-.header-icon{
-      margin-top: 5px;
-}
+                  .header-logo p{
+                        font-size: 10px;
+                        letter-spacing: 0.7px;
+                        margin-bottom: 1px;
+                  }
+
+            .header-icon{
+                  margin-top: 5px;
+            }
 
 .dashboard{
       margin: auto;
@@ -58,21 +64,19 @@ header{
 }
 
 
-.db-data{
-      background: rgba(255,255,255,0.87);
-      border-radius: 12.32px;
-      margin-top: .7rem;
-}
 
-.db-title{
-      font-size: 16.08px;
-      color: #1E1B1B;
-      letter-spacing: 0.71px;
-  }
+      .db-title{
+            font-size: 16.08px;
+            color: #1E1B1B;
+            letter-spacing: 0.71px;
+      }
 
-p, h3{
-      margin: 0;
-}
+      .db-data{
+            background: rgba(255,255,255,0.87);
+            border-radius: 12.32px;
+            margin-top: .7rem;
+      }
+
 
 .date, .time{
       text-align: center;
@@ -84,7 +88,8 @@ p, h3{
 }
 
       #day-of-week{
-            font-size:1.20rem;
+            font-size:1.4rem;
+            font-weight: 700;
             color: #A88CB3;
             letter-spacing: 0.28px;
             line-height: 1;
@@ -92,32 +97,36 @@ p, h3{
 
       #day-num{
       font-size: 43.8px;
+      font-weight: 400;
       letter-spacing: 0.7px;
       line-height: 1;
       }
 
 .time{
       width: 63%;
-      padding: 1rem .5rem;
+      padding: 1rem 1.2rem;
+      align-items: baseline;
 }
 
-.time-container-primary{
-      font-size: 43.08px;
-      letter-spacing: -1.5px;
-      line-height: 43.83px;
-      width: 70%;
-      align-self: center;
-}
+      .time-container-primary{
+            font-size: 48px;
+            font-weight: 500;
+            letter-spacing: -1.5px;
+            width: 70%;
+      }
 
-.time-container-secondary{
-      font-size: 10px;
-      width: 25%;
-      align-self: center;
-}
+   
+      .time-container-secondary{
+            width: 20%;
+            font-size: 10px;
+      }
 
-.time-container-secondary span{
-      display: block;
-}
+            .time-container-secondary span{
+             
+                 
+            }
+
+
 
 .tertiary{
       padding: 1rem 1rem .7rem 1rem;

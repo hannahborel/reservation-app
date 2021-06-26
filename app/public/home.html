@@ -19,9 +19,10 @@
      <main class="container">
 
            <header class="row">
-                 <div class="header-logo">
+                  <div class="header-logo">
                        <p>slate</p>
                  </div>
+
                  <span class="header-icon"><i class="fas fa-bars"></i></span>
 
            </header>
@@ -40,9 +41,15 @@
 
                                     <div class="db-data time row">
                                           <div class="time-container-primary">
-                                                <p id="time"></p>
+                                                <p id="time">
+                                                      <span id="hours">00</span><span>:</span><span id="minutes">00</span>
+                                                </p>
                                           </div>
-                                    </div>
+                                          <div class="time-container-secondary">
+                                                <span id="phase"></span>
+                                          </div>
+                                                
+                                          </div>
                               </section>
 
                               <section class="db-data tertiary row" id="reservations">
@@ -76,7 +83,7 @@
                                     <!-- </div> -->
                                      
                               </section>
-                  </div>
+               </div>
             </div>
       </main>
 
@@ -97,13 +104,13 @@ const date = new Date()
 let day;
 let dayInput = date.getDay()
 
-const timeObj = {
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: true
-};
+// const timeObj = {
+//       hour: 'numeric',
+//       minute: 'numeric',
+//       hour12: true
+// };
 
-let currentTime =  new Intl.DateTimeFormat('en-US', timeObj).format(date);
+// let currentTime =  new Intl.DateTimeFormat('en-US', timeObj).format(date);
 
 const dateObj = {
       date: date.getDate(),
@@ -139,20 +146,6 @@ function getDayOfWeek(){
       console.log(dateObj)
 }
 
-function findAmPm(){
-      let timeString = currentTime;
-      const am = "AM";
-      const pm = "PM";
-      let timeArray = timeString.split(' ');
-      const timeOfDay = timeArray[1];
-
-      if (timeOfDay == am){
-            console.log("if statement")
-            $('.time').append("<div class='time-container-secondary'><span id='time-am'>"+ am + "<span><span id='time-pm'>"+ pm + "<span></div>")
-      } else{
-            $('.time').append("<div class='time-container-secondary'><span id='time-pm'>" + pm + "</span> <span id='time-am'>" + am +  "</span></div>")
-      }
-}
      
 function printDateData(){
 
@@ -162,38 +155,87 @@ function printDateData(){
 
       dayTarget.append(dateObj.dayOfWeek)
       dateTarget.append(dateObj.date)
-      timeTarget.append("<span id ='timeOutput'>" + dateObj.time +"</span>")
+      // timeTarget.append("<span id ='timeOutput'>" + dateObj.time +"</span>")
 
 }
 
-function formatTime(){
-      let hours = date.getHours().toString()
-      let hoursArr = hours.split('')
-      let num = 9
-      let min = num.toString()
-      let minArr = min.split('')
 
-      if(hoursArr.length == 2 & minArr.length == 2){
-            dateObj.time = hours +":"+ min;
-            console.log(dateObj.time)
-      }else if(hoursArr.length == 1 & minArr.length == 2){
-            dateObj.time = "0"+ hours +":"+ min;
-            console.log(dateObj.time)
-      } else if(hoursArr.length == 2 & minArr.length == 1){
-            dateObj.time =  hours +":"+ "0"+ min;
-            console.log(dateObj.time)
-      } else{
-            dateObj.time =  "0"+hours +":"+ "0"+ min;
-            console.log(dateObj.time)
-      }
+function clock() {
+    var hours = document.getElementById("hours");
+    var minutes = document.getElementById("minutes");
+    var phase = document.getElementById("phase");
+
+    var h = new Date().getHours();
+    var m = new Date().getMinutes();
+    var am = "AM";
+
+    if (h > 12) {
+        h = h - 12;
+        var am = "PM";
+    }
+
+    h = h < 10 ? "0" + h : h;
+    m = m < 10 ? "0" + m : m;
+
+    hours.innerHTML = h;
+    minutes.innerHTML = m;
+    phase.innerHTML = am;
+}
+
+var interval = setInterval(clock, 1000);
+
+
+
+// function formatTime(){
+//       let hours = date.getHours().toString()
+//       let hoursArr = hours.split('')
+//       let num = 9
+//       let min = num.toString()
+//       let minArr = min.split('')
+
+//       if(hoursArr.length == 2 & minArr.length == 2){
+//             dateObj.time = hours +":"+ min;
+//             console.log(dateObj.time)
+//       }else if(hoursArr.length == 1 & minArr.length == 2){
+//             dateObj.time = "0"+ hours +":"+ min;
+//             console.log(dateObj.time)
+//       } else if(hoursArr.length == 2 & minArr.length == 1){
+//             dateObj.time =  hours +":"+ "0"+ min;
+//             console.log(dateObj.time)
+//       } else{
+//             dateObj.time =  "0"+hours +":"+ "0"+ min;
+//             console.log(dateObj.time)
+//       }
       
-}
+// }
+
+// function findAmPm(){
+//       let timeString = currentTime;
+//       const am = "AM";
+//       const pm = "PM";
+//       let timeArray = timeString.split(' ');
+//       const timeOfDay = timeArray[1];
+
+//       if (timeOfDay == am){
+//             console.log("if statement")
+//             $('.time').append("<div class='time-container-secondary'><span id='time-am'>"+ am + "<span><span id='time-pm'>"+ pm + "<span></div>")
+
+//             $("#time-am").addClass("time-highlight");
+
+//       } else{
+//             $('.time').append("<div class='time-container-secondary'><span id='time-am'>" + am + "</span> <span id='time-pm'>" + pm +  "</span></div>")
+
+//             $("#time-pm").addClass("time-highlight");
+//       }
+// }
 
 
-formatTime();
+// formatTime();
+// findAmPm()
 getDayOfWeek();
+clock()
 printDateData();
-findAmPm()
+
 
 
 </script>
