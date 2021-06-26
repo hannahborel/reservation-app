@@ -4,6 +4,9 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://kit.fontawesome.com/8f9e2dfbe3.js" crossorigin="anonymous"></script>
+
+
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
@@ -19,7 +22,8 @@
                  <div class="header-logo">
                        <p>slate</p>
                  </div>
-                 <div class="header-info"><img src ="static/img/icons/info-circle.png"></div>
+                 <span class="header-icon"><i class="fas fa-bars"></i></span>
+
            </header>
 
            <div class="dashboard">
@@ -51,9 +55,9 @@
                                           <p class="data-result-secondary">0/10</p>
                                           </div>
 
-                                          <div class="data-icon">
-                                                <img src="static/img/icons/squares-green.png" alt="reservations icon">
-                                          </div>
+                                 
+                                                <img src="static/img/icons/squares-green-ai.png" alt="reservations icon" class="data-icon">
+                                          
 
                               </section>
 
@@ -67,9 +71,9 @@
                                           <p class="data-result-secondary">0/10</p>
                                     </div>
 
-                                    <div class="data-icon">
-                                          <img src="static/img/icons/waitlist-grey.png" alt="reservations icon">
-                                    </div>
+                                    <!-- <div class="data-icon"> -->
+                                         <i> <img src="static/img/icons/waitlist-grey-ai.png" alt="reservations icon" class="data-icon"></i>
+                                    <!-- </div> -->
                                      
                               </section>
                   </div>
@@ -127,7 +131,7 @@ function getDayOfWeek(){
             day = "FRI";
             break;
       case  6:
-            day = "Saturday";
+            day = "SAT";
       }
 
       dateObj.dayOfWeek = day;

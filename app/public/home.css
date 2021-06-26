@@ -39,12 +39,13 @@ header{
 }
 
 .header-logo p{
-      font-size: 12px;
-      letter-spacing: 0.7px ;
+      font-size: 10px;
+      letter-spacing: 0.7px;
+      margin-bottom: 1px;
 }
 
-.header-info img{
-      padding-top: 15px;
+.header-icon{
+      margin-top: 5px;
 }
 
 .dashboard{
@@ -53,7 +54,9 @@ header{
        border-radius: 26.76px;
       padding: 1rem;
       backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
 }
+
 
 .db-data{
       background: rgba(255,255,255,0.87);
@@ -62,7 +65,6 @@ header{
 }
 
 .db-title{
-      font-family: SFProDisplay-Semibold;
       font-size: 16.08px;
       color: #1E1B1B;
       letter-spacing: 0.71px;
@@ -82,7 +84,6 @@ p, h3{
 }
 
       #day-of-week{
-            font-family: SFProDisplay-Bold;
             font-size:1.20rem;
             color: #A88CB3;
             letter-spacing: 0.28px;
@@ -90,7 +91,6 @@ p, h3{
       }
 
       #day-num{
-      font-family: SFProDisplay-Medium;
       font-size: 43.8px;
       letter-spacing: 0.7px;
       line-height: 1;
@@ -102,8 +102,6 @@ p, h3{
 }
 
 .time-container-primary{
-
-      font-family: SFProDisplay-Semibold;
       font-size: 43.08px;
       letter-spacing: -1.5px;
       line-height: 43.83px;
@@ -156,6 +154,8 @@ p, h3{
 .data-icon{
       align-self: center;
       text-align: center;
+      height: 60px;
+      width: 60px;
 }
 
 footer{
