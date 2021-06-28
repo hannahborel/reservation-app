@@ -30,45 +30,43 @@
            <div class="dashboard">
                  <div class="db-content">
                        
-                       <h1 class="db-title">Welcome Back</h1>
+                        <h1 class="db-title">Welcome Back</h1>
 
-                              <section class="data-primary row">
+                        <section class="data-primary row">
 
-                                    <div class="db-data date">
-                                          <p id= day-of-week></p>
-                                          <p id="day-num"></p>
-                                    </div>
+                              <div class="db-data date">
+                                    <p id= day-of-week></p>
+                                    <p id="day-num"></p>
+                              </div>
 
-                                    <div class="db-data time row">
-                                          <div class="time-container-primary">
-                                                <p id="time">
-                                                      <span id="hours">00</span><span>:</span><span id="minutes">00</span>
-                                                </p>
-                                          </div>
-                                          <div class="time-container-secondary">
+                              <div class="db-data clock">
+
+                                          <span class="clock-time">
+                                          <span id="hours" >00</span ><span>:</span><span id="minutes" >00</span>
+                                          </span>
+
+                                          <span class="clock-phase">
                                                 <span id="phase"></span>
-                                          </div>
-                                                
-                                          </div>
-                              </section>
+                                          </span>
+                              </div>
 
-                              <section class="db-data tertiary row" id="reservations">
-                                    <div class=" text-content">
+                        </section>
 
-                                          <h3 class="data-title">Reservations</h3>
-                                          <p class="data-result-primiary">
-                                                <span id="table-res-result">0</span> Tables Reserved
-                                          </p>
-                                          <p class="data-result-secondary">0/10</p>
-                                          </div>
+                        <section class="db-data tertiary row" id="reservations">
 
-                                 
-                                                <img src="static/img/icons/squares-green-ai.png" alt="reservations icon" class="data-icon">
-                                          
+                              <div class=" text-content">
+                                    <h3 class="data-title">Reservations</h3>
+                                    <p class="data-result-primiary">
+                                          <span id="table-res-result">0</span> Tables Reserved
+                                    </p>
+                                    <p class="data-result-secondary">0/10</p>
+                               </div>
 
-                              </section>
+                              <img src="static/img/icons/squares-green-ai.png" alt="reservations icon" class="data-icon">
+      
+                        </section>
 
-                              <section class="db-data tertiary row" id="waitList">
+                        <section class="db-data tertiary row" id="waitList">
 
                                     <div class="text-content">
                                           <h3 class="data-title">Waitlist</h3>
@@ -77,40 +75,35 @@
                                           </p>
                                           <p class="data-result-secondary">0/10</p>
                                     </div>
-
-                                    <!-- <div class="data-icon"> -->
-                                         <i> <img src="static/img/icons/waitlist-grey-ai.png" alt="reservations icon" class="data-icon"></i>
-                                    <!-- </div> -->
+                                    
+                                    <i> <img src="static/img/icons/waitlist-grey-ai.png" alt="reservations icon" class="data-icon"></i>
                                      
-                              </section>
+                         </section>
+
+                         <nav>
+                                    <div class="nav-content row">
+
+                                          <button class="nav-button is-active" id="home"><a href="/"><i class="fas fa-home fa-2x"></i></a></button>
+
+                                          <button class="nav-button" id="reservations"><a href="/tables"><i class="fas fa-th-large fa-2x"></i></a></button>
+
+                                          <button class="nav-button" id="add-res"><a href="/reserve"><i class="fas fa-plus-square fa-2x"></i></i></a></button>
+                                          
+                                    </div>
+                        </nav>
                </div>
             </div>
       </main>
 
-      <footer>
-            <nav>
-                  <div class="nav-content row">
-                        <a href="/"><img src="static/img/icons/home-selected.png" alt="home icon"></a>
-                        <a href="/tables"><img src="static/img/icons/squares-inactive.png" alt="reservations icon"></a>
-                        <a href="/reserve"><img src="static/img/icons/add-inactive.png" alt="reservations icon"></a>
-                  </div>
-            </nav>
-      </footer>
+     
 </body>
 
 <script>
 
+
 const date = new Date()
 let day;
 let dayInput = date.getDay()
-
-// const timeObj = {
-//       hour: 'numeric',
-//       minute: 'numeric',
-//       hour12: true
-// };
-
-// let currentTime =  new Intl.DateTimeFormat('en-US', timeObj).format(date);
 
 const dateObj = {
       date: date.getDate(),
@@ -151,11 +144,9 @@ function printDateData(){
 
       const dayTarget = $("#day-of-week")
       const dateTarget = $("#day-num")
-      const timeTarget = $("#time")
 
       dayTarget.append(dateObj.dayOfWeek)
       dateTarget.append(dateObj.date)
-      // timeTarget.append("<span id ='timeOutput'>" + dateObj.time +"</span>")
 
 }
 
@@ -185,53 +176,6 @@ function clock() {
 var interval = setInterval(clock, 1000);
 
 
-
-// function formatTime(){
-//       let hours = date.getHours().toString()
-//       let hoursArr = hours.split('')
-//       let num = 9
-//       let min = num.toString()
-//       let minArr = min.split('')
-
-//       if(hoursArr.length == 2 & minArr.length == 2){
-//             dateObj.time = hours +":"+ min;
-//             console.log(dateObj.time)
-//       }else if(hoursArr.length == 1 & minArr.length == 2){
-//             dateObj.time = "0"+ hours +":"+ min;
-//             console.log(dateObj.time)
-//       } else if(hoursArr.length == 2 & minArr.length == 1){
-//             dateObj.time =  hours +":"+ "0"+ min;
-//             console.log(dateObj.time)
-//       } else{
-//             dateObj.time =  "0"+hours +":"+ "0"+ min;
-//             console.log(dateObj.time)
-//       }
-      
-// }
-
-// function findAmPm(){
-//       let timeString = currentTime;
-//       const am = "AM";
-//       const pm = "PM";
-//       let timeArray = timeString.split(' ');
-//       const timeOfDay = timeArray[1];
-
-//       if (timeOfDay == am){
-//             console.log("if statement")
-//             $('.time').append("<div class='time-container-secondary'><span id='time-am'>"+ am + "<span><span id='time-pm'>"+ pm + "<span></div>")
-
-//             $("#time-am").addClass("time-highlight");
-
-//       } else{
-//             $('.time').append("<div class='time-container-secondary'><span id='time-am'>" + am + "</span> <span id='time-pm'>" + pm +  "</span></div>")
-
-//             $("#time-pm").addClass("time-highlight");
-//       }
-// }
-
-
-// formatTime();
-// findAmPm()
 getDayOfWeek();
 clock()
 printDateData();

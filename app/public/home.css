@@ -1,8 +1,10 @@
+
+
 *, *::before, *::after {
       box-sizing: border-box;
   }
 
-  body {
+body {
       min-height: 812px;
       min-width: 100vw;
       margin: 0;
@@ -13,15 +15,18 @@
       background-size: cover;
   }
   
-
-  .row{
+.row{
       display: flex;
       justify-content: space-between;
   }
 
+.db-data{
+      background: rgba(255,255,255,0.87);
+      border-radius: 12.32px;
+      margin-top: .7rem;
+}
 
-
-  .container{
+.container{
       margin: auto;
       width:  90%;
       max-width: 320px;
@@ -56,14 +61,13 @@ p, h3{
 
 .dashboard{
       margin: auto;
-      background-image: linear-gradient(180deg, #FFFFFF 7%, rgba(217,210,226,0.14) 43%, rgba(243,243,243,0.00) 80%);
-       border-radius: 26.76px;
+      max-width: 290px;
+      background-image: linear-gradient(177deg, #FFFFFF 7%, rgba(217,210,226,0.14) 56%, #FFFFFF 95%);
+      border-radius: 26.76px;
       padding: 1rem;
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(3px);
 }
-
-
 
       .db-title{
             font-size: 16.08px;
@@ -71,110 +75,116 @@ p, h3{
             letter-spacing: 0.71px;
       }
 
-      .db-data{
-            background: rgba(255,255,255,0.87);
-            border-radius: 12.32px;
-            margin-top: .7rem;
+      .data-primary{
+            padding: 1px;
       }
 
-
-.date, .time{
-      text-align: center;
-}
-
-.date{
-      width: 32%;
-      padding: .7rem .7rem;
-}
-
-      #day-of-week{
-            font-size:1.4rem;
-            font-weight: 700;
-            color: #A88CB3;
-            letter-spacing: 0.28px;
-            line-height: 1;
+      .date, .clock{
+            text-align: center;
       }
 
-      #day-num{
-      font-size: 43.8px;
-      font-weight: 400;
-      letter-spacing: 0.7px;
-      line-height: 1;
+      .date{
+            width: 30%;
+            padding: .4rem .7rem .3rem;
       }
 
-.time{
-      width: 63%;
-      padding: 1rem 1.2rem;
-      align-items: baseline;
-}
-
-      .time-container-primary{
-            font-size: 48px;
-            font-weight: 500;
-            letter-spacing: -1.5px;
-            width: 70%;
-      }
-
-   
-      .time-container-secondary{
-            width: 20%;
-            font-size: 10px;
-      }
-
-            .time-container-secondary span{
-             
-                 
+            #day-of-week{
+                  font-size:1.2rem;
+                  font-weight: 700;
+                  color: #A88CB3;
+                  letter-spacing: 1px;
+                  line-height: 1;
             }
 
+            #day-num{
+                  font-size: 43.8px;
+                  font-weight: 400;
+                  letter-spacing: 0.7px;
+                  line-height: 1;
+            }
+
+      .clock{
+            width: 65%;
+            padding: .8rem 1rem;
+      }
+
+            .clock-time{
+                  font-size: 45px;
+                  font-weight: 500;
+                  letter-spacing: -1.5px;
+            }
+
+            .clock-phase{
+                  font-size: 10px;
+                  display: inline-block;
+                  letter-spacing: 1;
+            }
+
+      .tertiary{
+            padding: 1rem 1rem .7rem 1rem;
+      }
+
+      .tertiary + .tertiary{
+            margin-bottom: 1rem;
+      }
+
+            .text-content{
+                  width: 60%;
+            }
+
+                  .data-title{
+                        font-size: 14px;
+                        color: #191818;
+                        letter-spacing: 0.83px;
+                        margin-bottom: 6px;
+                  }
+
+                  .data-result-primiary{
+                        font-size: 12px;
+                        color: #918F8F;
+                        letter-spacing: 0.71px;
+                        margin-bottom: 1.5rem;
+                  }
+
+                  .data-result-secondary{
+                        font-size: 10px;
+                        color: #C0A4CB;
+                        letter-spacing: 0.71px;
+                  }
+
+                  .data-icon{
+                        align-self: center;
+                        text-align: center;
+                        height: 60px;
+                        width: 60px;
+                  }
+
+      nav{
+            padding: .5rem 1.7rem;
+            margin-top: 1.5rem;
+            position: relative;
+
+      }
+                  .nav-button{
+                        border: none;
+                        background: none;
+                        padding: 5px 0px
+                  }
+
+                        i {
+                              padding: 8px 0px;
+                        }
+
+                  .fa-home{
+                        color: #C0A4CB;
+                        border-bottom: 3px solid #C0A4CB; ;
+                  }             
+
+                   .fa-th-large, .fa-plus-square {
+                        color: #C9C7C7;
+                  }
 
 
-.tertiary{
-      padding: 1rem 1rem .7rem 1rem;
-}
-
-.tertiary + .tertiary{
-      margin-bottom: 1rem;
-}
-
-.text-content{
-      width: 60%;
-}
-
-.data-title{
-      font-size: 14px;
-      color: #191818;
-      letter-spacing: 0.83px;
-      margin-bottom: 6px;
-}
-
-.data-result-primiary{
-      font-size: 12px;
-      color: #918F8F;
-      letter-spacing: 0.71px;
-      margin-bottom: 1.5rem;
-}
-
-.data-result-secondary{
-      font-size: 10px;
-      color: #C0A4CB;
-      letter-spacing: 0.71px;
-}
-
-.data-icon{
-      align-self: center;
-      text-align: center;
-      height: 60px;
-      width: 60px;
-}
-
-footer{
-      opacity: 0.96;
-      background: #F8F7F6;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      padding: 1rem 4rem 1.2rem;
-}
 
 
 
