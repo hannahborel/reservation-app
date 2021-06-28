@@ -54,12 +54,14 @@
 
                         <section class="db-data tertiary row" id="reservations">
 
-                              <div class=" text-content">
+                              <div class="text-content">
                                     <h3 class="data-title">Reservations</h3>
                                     <p class="data-result-primiary">
-                                          <span id="table-res-result">0</span> Tables Reserved
+                                          <span id="table-res-result"></span> Tables Reserved
                                     </p>
-                                    <p class="data-result-secondary">0/10</p>
+                                    <p class="data-result-secondary">
+                                          <span id="table-capacity-result"></span>
+                                    </p>
                                </div>
 
                               <img src="static/img/icons/squares-green-ai.png" alt="reservations icon" class="data-icon">
@@ -71,9 +73,10 @@
                                     <div class="text-content">
                                           <h3 class="data-title">Waitlist</h3>
                                           <p class="data-result-primiary">
-                                                <span id="wait-list-result">0</span> Patrons Waiting
+                                                <span id="wait-list-result"></span> Patrons Waiting
                                           </p>
-                                          <p class="data-result-secondary">0/10</p>
+                                          <p class="data-result-secondary">
+                                                <span id ="wait-capacity-result"></span></p>
                                     </div>
                                     
                                     <i> <img src="static/img/icons/waitlist-grey-ai.png" alt="reservations icon" class="data-icon"></i>
@@ -100,6 +103,56 @@
 
 <script>
 
+function runTableQuery(){
+      var currentURL = window.location.origin;
+
+      $.ajax({
+            url: currentURL + '/api/tables',
+            method: "GET"
+      }).done(function(tableData){
+
+            console.log("-------------------")
+                  console.log("URL: " + currentURL + "/api/tables")
+                  console.log("-------------------")
+                  console.log("Table Data: ", tableData)
+                  console.log("TableArray.Length", tableData.tableArray.length)
+                  console.log("-------------------")
+
+                  let tableCapacity = tableData.capacity;
+                  let tableBooked = tableData.tableArray.length;
+
+                         $('#table-res-result').append(tableBooked)
+                         $('#table-capacity-result').append(tableBooked + "/" + tableCapacity)
+
+      })
+}
+
+function runWaitQuery(){
+
+      var currentURL = window.location.origin;
+
+      $.ajax({
+            url: currentURL + '/api/waitlist',
+            method: "GET"
+      }).done(function(waitListData){
+            console.log("-------------------")
+                  console.log("URL: " + currentURL + "/api/waitlist")
+                  console.log("-------------------")
+                  console.log("Table Data: ", waitListData)
+                  console.log("-------------------")
+
+                  let waitCapacity = waitListData.capacity;
+                  let waitBooked = waitListData.waitingArray.length;
+
+                  $('#wait-list-result').append(waitBooked)
+                  $('#wait-capacity-result').append(waitBooked + "/" + waitCapacity)
+
+      })
+}
+
+runTableQuery()
+runWaitQuery()
+     
 
 const date = new Date()
 let day;
