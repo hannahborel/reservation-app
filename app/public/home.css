@@ -29,7 +29,6 @@ body {
 .container{
       margin: auto;
       width:  90%;
-      max-width: 320px;
       padding: 1rem 0 0 0;
 }
 
@@ -38,20 +37,19 @@ p, h3{
 }
 
       header{
-            margin-bottom: 2rem;
+            margin-bottom: 3.2rem;
             color: #f3f3f3;
       }
 
             .header-logo{
-                  text-align: center;
-                  background: rgba(192, 164, 203, 0.8);
-                  padding: 15px 8px;
-                  border-radius: 50%;
+                  align-self: center;
             }
 
                   .header-logo p{
-                        font-size: 10px;
-                        letter-spacing: 0.7px;
+                        text-transform: uppercase;
+                        color: #f3f3f3;
+                        font-weight: 500;
+                        font-size: 13px;
                         margin-bottom: 1px;
                   }
 
@@ -61,7 +59,7 @@ p, h3{
 
 .dashboard{
       margin: auto;
-      max-width: 290px;
+      max-width: 90%;
       background-image: linear-gradient(177deg, #FFFFFF 7%, rgba(217,210,226,0.14) 56%, #FFFFFF 95%);
       border-radius: 26.76px;
       padding: 1rem;
@@ -125,7 +123,7 @@ p, h3{
       }
 
       .tertiary + .tertiary{
-            margin-bottom: 1rem;
+            margin-bottom: .5rem;
       }
 
             .text-content{
@@ -161,7 +159,7 @@ p, h3{
 
       nav{
             padding: .5rem 1.7rem;
-            margin-top: 1.5rem;
+            margin-top: .5rem;
             position: relative;
 
       }
