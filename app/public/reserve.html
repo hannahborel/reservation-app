@@ -80,7 +80,7 @@ var newReservation = {}
 
                  var currentURL = window.location.origin;
 
-                 $.post(currentURL = "/api/tables", newReservation, function(data){
+                 $.post(currentURL + "/api/tables", newReservation, function(data){
 
                   console.log("Data: ", data)
 

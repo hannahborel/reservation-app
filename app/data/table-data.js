@@ -8,8 +8,6 @@ var tableObj= {
                   phoneNumber: '000-000-000'
             }
 
-      ]
-}
-;
+      ]};
 
 module.exports = tableObj;

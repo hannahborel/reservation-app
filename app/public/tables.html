@@ -47,91 +47,94 @@
 
             <footer>
                   <container>
-                        <a href ="/api/clear" id='clear'>Clear Tables</a>
+                        <a href ="#" id='clear'>Clear Tables</a>
                   </container>
             </footer>
 
       </div>
 </body>
-<script type="text/javascript">
 
+<script>
       function runTableQuery(){
-            var currentURL = window.location.origin;
-      
-            $.ajax({
-                  url: currentURL + '/api/tables',
-                  method: "GET"
-            })
-            .done(function(tableData){
-                  console.log("-------------------")
-                  console.log("URL: " + currentURL + "/api/tables")
-                  console.log("-------------------")
-                  console.log(tableData)
-                  console.log("-------------------")
+      var currentURL = window.location.origin;
+
+      $.ajax({
+            url: currentURL + '/api/tables',
+            method: "GET"
+      })
+      .done(function(tableData){
+            console.log("-------------------")
+            console.log("URL: " + currentURL + "/api/tables")
+            console.log("-------------------")
+            console.log(tableData)
+            console.log("-------------------")
 
 
-                  for(var i =0; i < tableData.length; i++){
+            for(var i =0; i < tableData.tableArray.length; i++){
 
-                        console.log("Loop Data: ", tableData[i])
+                  console.log("Loop Data: ", tableData.tableArray[i])
 
-                        var tableSelection = $('<div>');
-                        tableSelection.addClass('res container bg-light');
-                        tableSelection.attr('id', 'tableRes-' + i+1);
-                        $('#tableSelection').append(tableSelection)
+                  var tableSelection = $('<div>');
+                  tableSelection.addClass('res container bg-light');
+                  tableSelection.attr('id', 'tableRes-' + i+1);
+                  $('#tableSelection').append(tableSelection)
 
-                        var tableNumber  =  i  +  1;
-                        $('#tableRes-' + i+1).append('<h5><span class="badge bg-primary"> '+ tableNumber + '</span> | ' + tableData[i].customerID + '</h5>' )
+                  var tableNumber  =  i  +  1;
+                  $('#tableRes-' + i+1).append('<h5><span class="badge bg-primary"> '+ tableNumber + '</span> | ' + tableData.tableArray[i].customerID + '</h5>' )
+            }
+      })
+}
+
+function runWaitQuery(){
+
+      var currentURL = window.location.origin;
+
+      $.ajax({
+            url: currentURL + '/api/waitlist',
+            method: "GET"
+      })
+      .done(function(waitListData){
+
+            console.log("-------------------")
+            console.log("URL: " + currentURL + "/api/waitlist")
+            console.log("-------------------")
+            console.log("waitListData: ", waitListData)
+            console.log("-------------------")
+
+            for(var i = 0; i < waitListData.waitingArray.length; i++){
+
+                  console.log(waitListData.waitingArray[i])
+
+                  var waitSelection = $('<div>');
+                  waitSelection.addClass('wait container bg-light');
+                  waitSelection.attr('id', 'waitRes-' + i +1)
+                  $('#waitSelection').append(waitSelection)
+
+                  var waitingNum = i + 1;
+                  $('#waitRes-' + i+1).append('<h5><span class="badge bg-primary">' + waitingNum + '</span> | ' + waitListData.waitingArray[i].customerID + '</h5>');
                   }
-            })
-      }
+      })
+}
 
-      function runWaitQuery(){
 
-            var currentURL = window.location.origin;
 
-            $.ajax({
-                  url: currentURL + '/api/waitlist',
-                  method: "GET"
-            })
-            .done(function(waitListData){
-
-                  console.log("-------------------")
-                  console.log("URL: " + currentURL + "/api/waitlist")
-                  console.log("-------------------")
-                  console.log("waitListData: ", waitListData)
-                  console.log("-------------------")
-
-                  for(var i = 0; i < waitListData.length; i++){
-
-                        console.log(waitListData[i])
-
-                        var waitSelection = $('<div>');
-                        waitSelection.addClass('wait container bg-light');
-                        waitSelection.attr('id', 'waitRes-' + i +1)
-                        $('#waitSelection').append(waitSelection)
-
-                        var waitingNum = i + 1;
-                        $('#waitRes-' + i+1).append('<h5><span class="badge bg-primary">' + waitingNum + '</span> | ' + waitListData[i].customerID + '</h5>');
-                        }
-            })
-      }
-
-      function clearTable() {
-      $.ajax({ url: "/api/clear", method: "POST" }).then(function() {
-      $("#waitList").empty();
-      $("#tableList").empty();
-    });
-  }
-
- $('#clear').on('click', function(){
-       alert('Cleaing...');
-       clearTable();
-       loaction.reload()
- })
+function clearTable() {
+      var currentURL = window.location.origin;
+      $.ajax({url: currentURL + "/api/clear", method: "POST"})
+    }
+  
+    $('#clear').on('click', function() {
+      alert("Clearing...");
+      clearTable();
+      location.reload();
+    })
 
 runTableQuery()
 runWaitQuery()
+  
+</script>
 
 
-      </script>
+    
+
 </html>

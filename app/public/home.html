@@ -5,16 +5,38 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <script src="https://kit.fontawesome.com/8f9e2dfbe3.js" crossorigin="anonymous"></script>
-
-
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="/static/home.css"/>
+      <link rel="stylesheet" type="text/css" href="static/css/home.css"/>
       <script src="https://code.jquery.com/jquery.js"></script>
       <title>Document</title>
 </head>
 <body>
+
+      <div class="modal" id= "change-limit">
+            <div class="modal-content">
+             <div class="modal-title-container row">
+                  <p class="modal-title">Edit List Capacity</p>
+                  <button class="close">&times;</button>
+             </div>
+            <hr>
+              <div class="input-container  row">
+
+                    <div class="input-content">
+                          <label for="tables" id="label-table">Reservations</label>
+                          <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" class="limit-input" id="table-input" maxlength="2" onfocus="this.value=''">
+                    </div>
+
+                    <div class="input-content">
+                          <label for="waitlist" id="label-waitlist">Waitlist</label>
+                          <input type = "number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" maxlength="2"  class="limit-input" id="waitlist-input" onfocus="this.value=''">
+                    </div>
+
+              </div>
+              <button type="submit" class="submit-modal">Submit</button>
+            </div>
+          </div>
 
      <main class="container">
 
@@ -23,7 +45,7 @@
                        <p>slate</p>
                  </div>
 
-                 <span class="header-icon"><i class="fas fa-bars fa-1x"></i></span>
+                 <button class="header-icon"><i class="far fa-edit"></i></span></button>
 
            </header>
 
@@ -59,12 +81,10 @@
                                     <p class="data-result-primiary">
                                           <span id="table-res-result"></span> Tables Reserved
                                     </p>
-                                    <p class="data-result-secondary">
-                                          <span id="table-capacity-result"></span>
-                                    </p>
+                                          <div class="data-result-secondary" id="table-capacity"></div>
                                </div>
 
-                              <img src="static/img/icons/squares-green-ai.png" alt="reservations icon" class="data-icon">
+                              <img src="static/assets/img/icons/squares-green-ai.png" alt="reservations icon" class="data-icon">
       
                         </section>
 
@@ -75,11 +95,11 @@
                                           <p class="data-result-primiary">
                                                 <span id="wait-list-result"></span> Patrons Waiting
                                           </p>
-                                          <p class="data-result-secondary">
-                                                <span id ="wait-capacity-result"></span></p>
+                                          <div class="data-result-secondary" id="wait-capacity">
+                                          </div>
                                     </div>
                                     
-                                    <i> <img src="static/img/icons/waitlist-grey-ai.png" alt="reservations icon" class="data-icon"></i>
+                                    <i><img src="static/assets/img/icons/waitlist-grey-ai.png" alt="reservations icon" class="data-icon"></i>
                                      
                          </section>
 
@@ -102,8 +122,7 @@
 </body>
 
 <script>
-
-function runTableQuery(){
+      function runTableQuery(){
       var currentURL = window.location.origin;
 
       $.ajax({
@@ -122,10 +141,18 @@ function runTableQuery(){
                   let tableBooked = tableData.tableArray.length;
 
                          $('#table-res-result').append(tableBooked)
-                         $('#table-capacity-result').append(tableBooked + "/" + tableCapacity)
+                        //  $('#table-capacity-result').append(tableBooked + "/" + tableCapacity)
+
+                          $("#table-capacity").append("<span id='tables-booked-result'>"+ tableBooked+'/'+"</span><span id='table-capacity-result'>"+tableCapacity+"</span>")
+
+                         getTablePlaceholder(tableCapacity)
+
+                  
 
       })
 }
+
+// ------------Waitlist Data------------//
 
 function runWaitQuery(){
 
@@ -145,7 +172,11 @@ function runWaitQuery(){
                   let waitBooked = waitListData.waitingArray.length;
 
                   $('#wait-list-result').append(waitBooked)
-                  $('#wait-capacity-result').append(waitBooked + "/" + waitCapacity)
+                  // $('#wait-capacity-result').append(waitBooked + "/" + waitCapacity)
+
+                  $("#wait-capacity").append("<span id='wait-booked-result'>"+ waitBooked+'/'+"</span><span id='wait-capacity-result'>"+waitCapacity+"</span>")
+
+                  getWaitPlaceholder(waitCapacity)
 
       })
 }
@@ -153,6 +184,7 @@ function runWaitQuery(){
 runTableQuery()
 runWaitQuery()
      
+// ------------Callendar------------//
 
 const date = new Date()
 let day;
@@ -203,6 +235,7 @@ function printDateData(){
 
 }
 
+// ------------Current Time------------//
 
 function clock() {
     var hours = document.getElementById("hours");
@@ -224,15 +257,113 @@ function clock() {
     hours.innerHTML = h;
     minutes.innerHTML = m;
     phase.innerHTML = am;
+
+    var interval = setInterval(clock, 1000);
 }
 
-var interval = setInterval(clock, 1000);
 
+
+
+//-------------------MODAL----------------------//
+
+
+function getTablePlaceholder(tableLimit){
+
+      let tablePlaceholder = tableLimit;
+      $("#table-input").attr("placeholder", tablePlaceholder)
+      $("#table-input").attr("value", tablePlaceholder)
+}
+
+function getWaitPlaceholder(waitlistLimit){
+
+      let waitPlaceholder = waitlistLimit;
+      $("#waitlist-input").attr("placeholder", waitPlaceholder)
+      $("#waitlist-input").attr("value", waitPlaceholder)
+}
+
+$(".header-icon").click(function(){
+      console.log("menu clicked")
+      $(".container").css("display","none")
+      $(".modal").show();
+})
+
+// Submit New Capacity 
+
+$(".submit-modal").click(function(){
+
+
+      let newTableCapacity = $("#table-input").val()
+      let newWaitCapacity = $("#waitlist-input").val()
+
+      if(newTableCapacity != "" & newWaitCapacity != ""){
+            var capacityObj = {
+                  table: newTableCapacity,
+                  wait: newWaitCapacity
+      }
+
+      console.log(capacityObj)
+
+      var currentURL = window.location.origin;
+
+      $.post(currentURL + "/api/updateCapacity", capacityObj, function(data){
+            console.log("Data", data)
+
+            
+            const modalTargetWait = $("#wait-capacity-result")
+            const modalTargetTable = $("#table-capacity-result")
+
+     
+            // modalTargetWait.attr({
+            //       placeholder: waitListData.capacity,
+            //       value: waitListData.capacity
+            // }).text(waitListData.capacity)
+
+            // modalTargetTable.attr({
+            //       placeholder: TableData.capacity,
+            //       value: TableData.capacity
+            // }).text(TableData.capacity)
+      })
+
+      
+      // Update HTML
+
+      // if(newTableCapacity == "" & newWaitCapacity != ""){
+      //       console.log("table empty")
+      //       $("#wait-capacity-result").text(newWaitCapacity)
+      //       $("#waitlist-input").attr("placeholder", newWaitCapacity)
+      //       console.log("waitlist updated")
+      // } else if(newWaitCapacity =="" & newTableCapacity != ""){
+      //       $("#table-capacity-result").text(newTableCapacity)
+      //       $("#table-input").attr("placeholder", newTableCapacity)
+
+      // } else{
+      //       $("#table-capacity-result").text(newTableCapacity)
+      //       $("#table-input").attr("placeholder", newTableCapacity)
+      //       $("#wait-capacity-result").text(newWaitCapacity)
+      //       $("#waitlist-input").attr("placeholder", newWaitCapacity)
+
+      // }
+     
+      // Clear input Field
+      $("input").val("");
+
+      $(".container").show()
+      $(".modal").hide();
+
+      console.log("submit")
+      console.log( newTableCapacity)
+      console.log(newWaitCapacity)
+      } else{
+            alert("Make sure both fields are entered")
+      }
+
+      
+
+})
 
 getDayOfWeek();
 clock()
 printDateData();
-
 
 
 </script>

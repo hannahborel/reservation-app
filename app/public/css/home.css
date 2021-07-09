@@ -2,6 +2,7 @@
 
 *, *::before, *::after {
       box-sizing: border-box;
+      /* font-family: 'Roboto', sans-serif; */
   }
 
 body {
@@ -10,9 +11,10 @@ body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
       font-size: 1rem;
-      background-image: url(./img/slate-bg-320.png);
+      background-image: url(/static/assets/img/slate-bg-320.png);
       background-repeat: no-repeat;
       background-size: cover;
+      overflow: hidden;
   }
   
 .row{
@@ -30,6 +32,9 @@ body {
       margin: auto;
       width:  90%;
       padding: 1rem 0 0 0;
+      min-width: 320px;
+      max-width: 375px;
+      /* visibility: hidden; */
 }
 
 p, h3{
@@ -54,7 +59,9 @@ p, h3{
                   }
 
             .header-icon{
-                  margin-top: 5px;
+                  border: none;
+                  background: none;
+                  color: #f3f3f3;
             }
 
 .dashboard{
@@ -148,7 +155,20 @@ p, h3{
                         font-size: 10px;
                         color: #C0A4CB;
                         letter-spacing: 0.71px;
+                        margin:0;
                   }
+
+                        .edit-capacity{
+                              border: none;
+                              font-size: 11px;
+                              color: #C0A4CB;
+                              background: none;
+                              letter-spacing: 0.71px;
+                              margin:0;
+                              padding:0;
+                        }
+
+                             
 
                   .data-icon{
                         align-self: center;
@@ -182,7 +202,114 @@ p, h3{
                         color: #C9C7C7;
                   }
 
+           
 
 
+/* ------------modal--------------- */
 
+.modal{
+      display: none;
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 30%;
+      width: 100%; /* Full width */
+   
+}
 
+.modal-content{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-items: center;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  border-radius: 20px;
+  padding: 1.25rem 1.5rem 2rem;
+
+}
+
+.modal-title-container{
+      width: 100%
+}
+
+      button.close {
+            align-self: flex-end;
+            width: 30px;
+            font-size: 20px;
+            color: #c0c5cb;
+            align-self: flex-end;
+            background-color: transparent;
+            border: none;
+      }
+
+    .modal-title{
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #666262;
+            text-transform: uppercase;
+            align-self: flex-start;
+            letter-spacing: 0.42px;
+      }
+
+      hr{
+            border: 1px solid rgba(187, 182, 182, 0.17);
+            width: 100%;
+            margin: 10px 0;
+      }
+
+      .input-container{
+            margin: 1rem 0 1.5rem;
+            padding: 0 1.5rem;
+      }
+      
+            .input-content{
+                  width: 45%;
+            }
+
+                  .input-content label{
+                        font-size: 10px;
+                  
+                  }
+
+                  #label-table{
+                        color: #ad7fbf;
+                  }
+
+                  #label-waitlist{
+                        color: #6f6d6f;
+                  }
+
+            .limit-input{
+                  border: 1px solid rgba(84, 82, 85, 0.30);
+                  border-radius: 5.68px; 
+                  width: 100%;
+                  height: 50px;
+                  margin-top: 0.2rem;
+                  font-size: 24px;
+                  text-align: center;
+
+            }
+
+            input::placeholder {
+                  color: lightgray
+                }
+
+            input:focus::placeholder {
+                  color: transparent;
+                }
+
+      #submit{
+            background: #C0A4CB;
+            box-shadow: 0px 6px 18px -5px rgba(192, 164, 203, 1);
+            border-radius: 18.49px;
+            border: none;
+            font-size: 10.08px;
+            color: #F8F5F5;
+            letter-spacing: 1.01px;
+            text-align: center;
+            font-size: 14px;
+            padding: 1rem 3rem;
+      }
