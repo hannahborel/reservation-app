@@ -14,7 +14,7 @@ module.exports = function(app) {
 
       app.post('/api/tables', function(req, res){
             console.log(req.body)
-            if(tableData.tableArray.length < 5){
+            if(tableData.tableArray.length < tableData.capacity){
                   tableData.tableArray.push(req.body);
                   res.json(true);
             } else {

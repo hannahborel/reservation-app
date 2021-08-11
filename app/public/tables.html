@@ -4,54 +4,62 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://kit.fontawesome.com/8f9e2dfbe3.js" crossorigin="anonymous"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="static/css/home.css"/>
       <script src="https://code.jquery.com/jquery.js"></script>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
       <title>Tables</title>
 </head>
 <body>
 
-      <div class="container">
+      <div class="container-primary bg-style">
+            <div class="container-overlay bg-style">
+                  <div class="tables-wrapper">
+                        <header class="row">
+                              <div class="header-logo">
+                                   <p class="logo" style="color: #ae85bf;">slate</p>
+                             </div>
+                             <button class="header-icon"><i class="far fa-edit" style="color: #ae85bf;"></i></span></button>
+                        
+                                   </header>
+                        <div class="tables-dashboard">
+                              <div class="db-content">
+                        
+                                    <!--Current Tables -->
+                                    <div class="data-reservations">
+                                                <h1 class="db-title">Reservations</h1>
+                        
+                                                 <div id="tableSelection"> </div>
+                                           </div>
+                        
+                                    <!--Waiting List -->
+                                    <div class="data-waitlist">
+                                          <h1 class="db-title">Waitlist</h1>
+                                          <div class="wait-data-list">
+                        
+                                          </div>
+                                    </div>
+                              </div>
+                                                <div class="button-container"><a href ="#" id='clear'>Clear Reservations</a></div>
+                        
+                          
+                                    </div>
+                              </div>
+                        
 
-            <div class="container p-5 bg-light">
-
-                  <h1 class="text-center fs-1 fw-bold mb-3"><span><i class="bi bi-lightning"></i></span>Hot Restaurant</h1>
-
-                  <h2 class="text-center fs-4 mb-1">Current Reservations and Waiting List</h2>
-                  <br>
-
-                  <div class="text-center">
-                        <a href="/reserve"><button type="button" class="btn btn-lg btn-danger"><span><i class="bi bi-credit-card-2-back-fill"></i></span>  Make Reservation</button></a>
-
-                        <a href="/"><button type="button" class="btn btn-lg border"><span><i class="bi bi-house-door-fill"></i></i></span> </button></a>
+                        <nav class = "nav--tables">
+                              <div class="nav-content row">
+                                    <button class="nav-button" id="home-btn"><a href="/"><i class="fas fa-home fa-2x" style="color: #C9C7C7;"></i></a>
+                                    </button>
+                                    <button class="nav-button is-active" id="tables-list-btn"><a href="/tables"><i class="fas fa-th-large fa-2x" style="color:#C0A4CB"></i></a>
+                                    </button>
+                                    <button class="nav-button" id="add-res-btn"><a href="/reserve"><i class="fas fa-plus-square fa-2x" style="color: #C9C7C7;"></i></i></a>
+                                    </button>
+                              </nav>
                   </div>
             </div>
-
-            <!--Current Tables -->
-            <div class="card my-4">
-                  <div class="card-header"> 
-                        <h4>Current Reservations</h4>
-            </div>
-                   <div class="card-body" id="tableSelection">
-                  </div>
-            </div>
-
-            <!--Waiting List -->
-            <div class="card my-4">
-                  <div class="card-header"> 
-                        <h4>Waiting List</h4>
-            </div>
-                  <div class="card-body" id= "waitSelection">
-                  </div>
-            </div>
-
-            <footer>
-                  <container>
-                        <a href ="#" id='clear'>Clear Tables</a>
-                  </container>
-            </footer>
-
-      </div>
 </body>
 
 <script>
@@ -75,12 +83,17 @@
                   console.log("Loop Data: ", tableData.tableArray[i])
 
                   var tableSelection = $('<div>');
-                  tableSelection.addClass('res container bg-light');
+                  tableSelection.addClass('db-data reservations row');
                   tableSelection.attr('id', 'tableRes-' + i+1);
                   $('#tableSelection').append(tableSelection)
 
                   var tableNumber  =  i  +  1;
-                  $('#tableRes-' + i+1).append('<h5><span class="badge bg-primary"> '+ tableNumber + '</span> | ' + tableData.tableArray[i].customerID + '</h5>' )
+
+                  if(tableNumber < 10){
+                    
+                      tableNumber = "0" + tableNumber
+                  }
+                  $('#tableRes-' + i+1).append('<div class="res-position"> '+ tableNumber + '</div><div class="text-content"><h3 class="data-title">' + tableData.tableArray[i].customerFirst+ " " + tableData.tableArray[i].customerLast + '</h3><p class="data-result-primiary party">Party Size / '+  tableData.tableArray[i].customerParty+ '</p></div>' )
             }
       })
 }
@@ -106,12 +119,12 @@ function runWaitQuery(){
                   console.log(waitListData.waitingArray[i])
 
                   var waitSelection = $('<div>');
-                  waitSelection.addClass('wait container bg-light');
+                  waitSelection.addClass('waitlist-data');
                   waitSelection.attr('id', 'waitRes-' + i +1)
-                  $('#waitSelection').append(waitSelection)
+                  $('.wait-data-list').append(waitSelection)
 
                   var waitingNum = i + 1;
-                  $('#waitRes-' + i+1).append('<h5><span class="badge bg-primary">' + waitingNum + '</span> | ' + waitListData.waitingArray[i].customerID + '</h5>');
+                  $('#waitRes-' + i+1).append('<div class="wait-item"> <span class="wait-position">' + waitingNum + '</span> <span class=" text-content wait-name">'+ waitListData.waitingArray[i].customerFirst + " " + waitListData.waitingArray[i].customerLast + '<span class="wait-party-size"> / '+ waitListData.waitingArray[i].customerParty+' </span> </div>');
                   }
       })
 }

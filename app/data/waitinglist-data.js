@@ -1,10 +1,32 @@
 var waitingObj={
       capacity: 0,
       waitingArray: [
-            {     customerName: 'Salina',
-                  customerEmail: 'salina@example.com',
-                  customerID: 'afhaque90',
-                  phoneNumber: '000-000-000'
+       {     customerFirst: 'Salina',
+            customerLast: 'Diez',
+            phoneNumber: '000-000-000',
+            customerEmail: 'ahmed@example.com',
+            customerParty: '6',
+            },
+
+            {      customerFirst: 'Salina',
+            customerLast: 'Diez',
+            phoneNumber: '000-000-000',
+            customerEmail: 'ahmed@example.com',
+            customerParty: '6',
+            },
+
+            {      customerFirst: 'Salina',
+            customerLast: 'Diez',
+            phoneNumber: '000-000-000',
+            customerEmail: 'ahmed@example.com',
+            customerParty: '6',
+            },
+            
+            {      customerFirst: 'Salina',
+            customerLast: 'Diez',
+            phoneNumber: '000-000-000',
+            customerEmail: 'ahmed@example.com',
+            customerParty: '6',
             }
       ]
 }

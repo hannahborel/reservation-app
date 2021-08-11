@@ -28,8 +28,13 @@
                   <div class="card-header">Table Reservation</div>
                   <div class="card-body">
                         <div class="mb-3">
-                              <label for="reserve-name" class="form-label">Name</label>
-                              <input type="text" class="form-control" id="reserve-name" aria-describedby="emailHelp">
+                              <label for="reserve-name" class="form-label">First Name</label>
+                              <input type="text" class="form-control" id="reserve-first" aria-describedby="emailHelp">
+                        </div>
+
+                        <div class="mb-3">
+                              <label for="reserve-name" class="form-label">Last Name</label>
+                              <input type="text" class="form-control" id="reserve-last" aria-describedby="emailHelp">
                         </div>
 
                         <div class="mb-3">
@@ -43,8 +48,8 @@
                         </div>
 
                         <div class="mb-3">
-                              <label for="reserve-unique-id" class="form-label">Unique ID</label>
-                              <input type="text" class="form-control" id="reserve-unique-id">
+                              <label for="reserve-unique-id" class="form-label">Party Size</label>
+                              <input type="text" class="form-control" id="reserve-party">
                         </div>
 
                         <button type="submit" class=" submit btn btn-primary">Submit</button>
@@ -70,10 +75,11 @@ var newReservation = {}
                   console.log("clicked")
                   
                   var newReservation  =  {
-                        customerName:  $('#reserve-name').val().trim(),
+                        customerFirst:  $('#reserve-first').val().trim(),
+                        customerLast:  $('#reserve-last').val().trim(),
                         customerPhone:  $('#reserve-phone').val().trim(),
                         customerEmail:  $('#reserve-email').val().trim(),
-                        customerID:  $('#reserve-unique-id').val().trim()
+                        customerParty:  $('#reserve-party').val().trim()
                   };
 
                  console.log(newReservation)
@@ -90,10 +96,11 @@ var newReservation = {}
                         alert("Reservations are full. You are now on the Waiting List")
                   }
 
-                  $('#reserve-name').val('')
+                  $('#reserve-first').val('')
+                  $('#reserve-last').val('')
                   $('#reserve-phone').val('')
                   $('#reserve-email').val('')
-                  $('#reserve-unique-id').val('')
+                  $('#reserve-party').val('')
 
                  })
                  return false;

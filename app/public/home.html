@@ -38,6 +38,8 @@
             </div>
           </div>
 
+<!-------------------------------- Dashboard -->
+
      <main class="container">
 
            <header class="row">
@@ -106,11 +108,11 @@
                          <nav>
                                     <div class="nav-content row">
 
-                                          <button class="nav-button is-active" id="home"><a href="/"><i class="fas fa-home fa-2x"></i></a></button>
+                                          <button class="nav-button is-active" id="home"><a href="/"><i class="fas fa-home fa-2x" style="color:#C0A4CB"></i></a></button>
 
-                                          <button class="nav-button" id="reservations"><a href="/tables"><i class="fas fa-th-large fa-2x"></i></a></button>
+                                          <button class="nav-button" id="reservations"><a href="/tables"><i class="fas fa-th-large fa-2x" style="color: #C9C7C7"></i></a></button>
 
-                                          <button class="nav-button" id="add-res"><a href="/reserve"><i class="fas fa-plus-square fa-2x"></i></i></a></button>
+                                          <button class="nav-button" id="add-res"><a href="/reserve"><i class="fas fa-plus-square fa-2x"  style="color: #C9C7C7"></i></i></a></button>
                                           
                                     </div>
                         </nav>
@@ -289,74 +291,44 @@ $(".header-icon").click(function(){
 
 // Submit New Capacity 
 
-$(".submit-modal").click(function(){
+function editCapacityData(capacityObj){
 
+      var currentURL = window.location.origin;
+
+      $.post(currentURL + "/api/updateCapacity", capacityObj, function(data){
+      console.log("Data", data)
+
+      
+      const modalTargetWait = $("#wait-capacity-result")
+      const modalTargetTable = $("#table-capacity-result")
+})
+}
+
+$(".submit-modal").click(function(){
 
       let newTableCapacity = $("#table-input").val()
       let newWaitCapacity = $("#waitlist-input").val()
 
-      if(newTableCapacity != "" & newWaitCapacity != ""){
-            var capacityObj = {
+      var capacityObj = {
                   table: newTableCapacity,
                   wait: newWaitCapacity
       }
 
       console.log(capacityObj)
-
-      var currentURL = window.location.origin;
-
-      $.post(currentURL + "/api/updateCapacity", capacityObj, function(data){
-            console.log("Data", data)
-
-            
-            const modalTargetWait = $("#wait-capacity-result")
-            const modalTargetTable = $("#table-capacity-result")
-
-     
-            // modalTargetWait.attr({
-            //       placeholder: waitListData.capacity,
-            //       value: waitListData.capacity
-            // }).text(waitListData.capacity)
-
-            // modalTargetTable.attr({
-            //       placeholder: TableData.capacity,
-            //       value: TableData.capacity
-            // }).text(TableData.capacity)
-      })
-
+      editCapacityData(capacityObj)
+      location.reload();
       
-      // Update HTML
 
-      // if(newTableCapacity == "" & newWaitCapacity != ""){
-      //       console.log("table empty")
-      //       $("#wait-capacity-result").text(newWaitCapacity)
-      //       $("#waitlist-input").attr("placeholder", newWaitCapacity)
-      //       console.log("waitlist updated")
-      // } else if(newWaitCapacity =="" & newTableCapacity != ""){
-      //       $("#table-capacity-result").text(newTableCapacity)
-      //       $("#table-input").attr("placeholder", newTableCapacity)
+  
 
-      // } else{
-      //       $("#table-capacity-result").text(newTableCapacity)
-      //       $("#table-input").attr("placeholder", newTableCapacity)
-      //       $("#wait-capacity-result").text(newWaitCapacity)
-      //       $("#waitlist-input").attr("placeholder", newWaitCapacity)
 
-      // }
-     
-      // Clear input Field
-      $("input").val("");
+   
 
-      $(".container").show()
-      $(".modal").hide();
 
       console.log("submit")
       console.log( newTableCapacity)
       console.log(newWaitCapacity)
-      } else{
-            alert("Make sure both fields are entered")
-      }
-
+   
       
 
 })
