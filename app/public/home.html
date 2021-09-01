@@ -14,47 +14,56 @@
 </head>
 <body>
 
-      <div class="modal" id= "change-limit">
-            <div class="modal-content">
-             <div class="modal-title-container row">
-                  <p class="modal-title">Edit List Capacity</p>
-                  <button class="close">&times;</button>
-             </div>
-            <hr>
-              <div class="input-container  row">
-
-                    <div class="input-content">
-                          <label for="tables" id="label-table">Reservations</label>
-                          <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" class="limit-input" id="table-input" maxlength="2" onfocus="this.value=''">
+      <div class="modal-container">
+            <div class="modal" id= "change-limit">
+                  <div class="modal-content">
+                   <div class="modal-title-container">
+                        <p class="modal-title">Edit List Capacity</p>
+                   </div>
+                  <hr>
+                    <div class="input-container  row">
+                          <div class="input-content">
+                                <label for="tables" id="label-table">Reservations</label>
+                                <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" class="limit-input" id="table-input" maxlength="2" onfocus="this.value=''">
+                          </div>
+                          <div class="input-content">
+                                <label for="waitlist" id="label-waitlist">Waitlist</label>
+                                <input type = "number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" maxlength="2"  class="limit-input" id="waitlist-input" onfocus="this.value=''">
+                          </div>
                     </div>
+                    <div class="submit-container row">
+                          <button type="submit" class="submit-modal">SUBMIT</button>
+                  </div>
+                  </div>
+                </div>
+      </div>
 
-                    <div class="input-content">
-                          <label for="waitlist" id="label-waitlist">Waitlist</label>
-                          <input type = "number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" maxlength="2"  class="limit-input" id="waitlist-input" onfocus="this.value=''">
-                    </div>
-
-              </div>
-              <button type="submit" class="submit-modal">Submit</button>
-            </div>
-          </div>
-
-<!-------------------------------- Dashboard -->
+<!-------------------------------- header -->
 
      <main class="container">
 
-           <header class="row">
-                  <div class="header-logo">
-                       <p>slate</p>
-                 </div>
-
-                 <button class="header-icon"><i class="far fa-edit"></i></span></button>
-
+           <header class="header-logo row">
+                 <button class="header-icon"><i class="far fa-edit" style="color:#ffffff;"></i></span></button>
            </header>
 
            <div class="dashboard">
+
+            <!--------------------Tabs---------------------- -->
+            <div class="nav row">
+
+                  <button class="tab-links active" id="home"><a href="/" data-target="home.html"><i class="fas fa-home fa-2x active"></i></a></button>
+
+                  <button class="tab-links" id="reservations"><a href="/tables" data-target="tables.html"><i class="fas fa-th-large fa-2x"></i></a></button>
+
+                  <button class="tab-links" id="add-res"><a href="/reserve"><i class="fas fa-plus-square fa-2x"></i></a></button>
+      
+      </div>
+ <!--------------------DB Content---------------------->
+
                  <div class="db-content">
                        
                         <h1 class="db-title">Welcome Back</h1>
+                        
 
                         <section class="data-primary row">
 
@@ -80,13 +89,12 @@
 
                               <div class="text-content">
                                     <h3 class="data-title">Reservations</h3>
-                                    <p class="data-result-primiary">
-                                          <span id="table-res-result"></span> Tables Reserved
+                                    <p class="data-result-primiary"><span id="table-res-result"></span> Tables Reserved
                                     </p>
                                           <div class="data-result-secondary" id="table-capacity"></div>
                                </div>
 
-                              <img src="static/assets/img/icons/squares-green-ai.png" alt="reservations icon" class="data-icon">
+                               <img src="static/assets/img/icons/squares-green-ai.png" alt="reservations icon" class="data-icon">
       
                         </section>
 
@@ -105,17 +113,7 @@
                                      
                          </section>
 
-                         <nav>
-                                    <div class="nav-content row">
-
-                                          <button class="nav-button is-active" id="home"><a href="/"><i class="fas fa-home fa-2x" style="color:#C0A4CB"></i></a></button>
-
-                                          <button class="nav-button" id="reservations"><a href="/tables"><i class="fas fa-th-large fa-2x" style="color: #C9C7C7"></i></a></button>
-
-                                          <button class="nav-button" id="add-res"><a href="/reserve"><i class="fas fa-plus-square fa-2x"  style="color: #C9C7C7"></i></i></a></button>
-                                          
-                                    </div>
-                        </nav>
+                         
                </div>
             </div>
       </main>
@@ -145,7 +143,7 @@
                          $('#table-res-result').append(tableBooked)
                         //  $('#table-capacity-result').append(tableBooked + "/" + tableCapacity)
 
-                          $("#table-capacity").append("<span id='tables-booked-result'>"+ tableBooked+'/'+"</span><span id='table-capacity-result'>"+tableCapacity+"</span>")
+                          $("#table-capacity").append("<span id='tables-booked-result'>Capacity </span><span id='table-capacity-result'>"+tableCapacity+"</span>")
 
                          getTablePlaceholder(tableCapacity)
 
@@ -176,7 +174,7 @@ function runWaitQuery(){
                   $('#wait-list-result').append(waitBooked)
                   // $('#wait-capacity-result').append(waitBooked + "/" + waitCapacity)
 
-                  $("#wait-capacity").append("<span id='wait-booked-result'>"+ waitBooked+'/'+"</span><span id='wait-capacity-result'>"+waitCapacity+"</span>")
+                  $("#wait-capacity").append("<span id='wait-booked-result'>Capacity </span><span id='wait-capacity-result'>"+waitCapacity+"</span>")
 
                   getWaitPlaceholder(waitCapacity)
 
@@ -221,6 +219,7 @@ function getDayOfWeek(){
             day = "SAT";
       }
 
+    
       dateObj.dayOfWeek = day;
 
       console.log(dateObj)
@@ -232,8 +231,14 @@ function printDateData(){
       const dayTarget = $("#day-of-week")
       const dateTarget = $("#day-num")
 
+      console.log("0" + dateObj.date)
       dayTarget.append(dateObj.dayOfWeek)
-      dateTarget.append(dateObj.date)
+      if(dateObj.date < 10){
+            dateTarget.append("0"+dateObj.date)
+      }else{
+            dateTarget.append(dateObj.date)
+      }
+   
 
 }
 
@@ -253,7 +258,7 @@ function clock() {
         var am = "PM";
     }
 
-    h = h < 10 ? "0" + h : h;
+//     h = h < 10 ? "0" + h : h;
     m = m < 10 ? "0" + m : m;
 
     hours.innerHTML = h;
@@ -285,8 +290,8 @@ function getWaitPlaceholder(waitlistLimit){
 
 $(".header-icon").click(function(){
       console.log("menu clicked")
-      $(".container").css("display","none")
-      $(".modal").show();
+      $(".dashboard").css("visibility","hidden")
+      $(".modal-container").show();
 })
 
 // Submit New Capacity 
@@ -317,12 +322,6 @@ $(".submit-modal").click(function(){
       console.log(capacityObj)
       editCapacityData(capacityObj)
       location.reload();
-      
-
-  
-
-
-   
 
 
       console.log("submit")
@@ -332,6 +331,32 @@ $(".submit-modal").click(function(){
       
 
 })
+
+//---------------- Make Buttons Active ----------------------
+
+var buttons =  document.querySelectorAll('.tab-links');
+var activeClassName = 'active';
+
+for(var i = 0; i < buttons.length; i++) {
+    
+  buttons[i].addEventListener('click', function(e){
+
+      var buttonTarget = $(buttons).find("i")
+    activeState(buttonTarget, activeClassName);
+    e.target.classList.add(activeClassName);
+  });
+}
+
+function activeState(items, activeName) {
+  for(var i = 0; i < items.length; i++) {
+    if(items[i].classList.contains(activeName)) {
+      items[i].classList.remove(activeName);
+    }
+  }
+}
+
+
+
 
 getDayOfWeek();
 clock()

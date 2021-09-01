@@ -4,65 +4,73 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://kit.fontawesome.com/8f9e2dfbe3.js" crossorigin="anonymous"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="static/css/home.css"/>
       <script src="https://code.jquery.com/jquery.js"></script>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
       <title>Document</title>
 </head>
 <body>
+            <main class="container">
+                  <header class="row">
+                        <div class="header-logo">
+                             <p>slate</p>
+                       </div>
+      
+                       <button class="header-icon"><i class="far fa-edit"></i></span></button>
+      
+                 </header>
 
-      <div class="container">
-            <div class="container p-5 bg-light">
-                  <h1 class="text-center fs-3 mb-3">Make Your Reservation</h1>
-                  <br>
+                  <div class="dashboard">
 
-                  <div class="text-center">
+                        <!--------------------Tabs---------------------- -->
+                        <div class="nav row">
 
-                        <a href="/tables"><button type="button" class="btn btn-lg btn-primary"><span><i class="bi bi-card-list"></i></span> View Tables</button></a>
+                              <button class="tab-links active" id="home"><a href="/" data-target="home.html"><i class="fas fa-home fa-2x"></i></a></button>
+
+                              <button class="tab-links" id="reservations"><a href="/tables" data-target="tables.html"><i class="fas fa-th-large fa-2x"></i></a></button>
+
+                              <button class="tab-links" id="add-res"><a href="/reserve"><i class="fas fa-plus-square fa-2x active"></i></a></button>
+                  
+                  </div>
+
+                   <!--------------------DB Content---------------------->
+
+                  <div class="form">
                         
-                        <a href="/"><button type="button" class="btn btn-lg border"><span><i class="bi bi-house-door-fill"></i></i></span> </button></a>
-                  </div>
-            </div>
+                  <div class="data-title">New Reservation</div>
 
-            <div class="card my-4">
-                  <div class="card-header">Table Reservation</div>
-                  <div class="card-body">
-                        <div class="mb-3">
-                              <label for="reserve-name" class="form-label">First Name</label>
-                              <input type="text" class="form-control" id="reserve-first" aria-describedby="emailHelp">
+                        <div class="form-content">
+
+                                    <div class="form-content-primary row">
+
+                                          <div class="form-input-container">
+                                                <input type="text" placeholder="First Name" class="form-input" id="input-0" aria-describedby="emailHelp" required>
+                                          </div>
+                                          <div class="form-input-container">
+                                                <input type="text" placeholder="Last Name"class="form-input" id="input-1" aria-describedby="emailHelp">
+                                          </div>
+                                          <div class="form-input-container">
+                                                <input type="text" placeholder="Phone" class="form-input" id="input-2">
+                                          </div>
+                                          <div class="form-input-container">
+                                                <input type="text" placeholder="Email" class="form-input" id="input-3">
+                                          </div>
+                                    </div>
+                              <div class="form-content-secondary row">
+                                    <div class="form-input-container">
+                                          <input type="text" placeholder="Party Size" class="form-input" id="input-4">
+                                    </div>
+
+                                    <button type="submit" class="submit-form"><span class="button-text">Submit</span></button>
+                               </div>
                         </div>
-
-                        <div class="mb-3">
-                              <label for="reserve-name" class="form-label">Last Name</label>
-                              <input type="text" class="form-control" id="reserve-last" aria-describedby="emailHelp">
-                        </div>
-
-                        <div class="mb-3">
-                              <label for="reserve-phone" class="form-label">Phone Number</label>
-                              <input type="text" class="form-control" id="reserve-phone">
-                        </div>
-
-                        <div class="mb-3">
-                              <label for="reserve-email" class="form-label">Email</label>
-                              <input type="text" class="form-control" id="reserve-email">
-                        </div>
-
-                        <div class="mb-3">
-                              <label for="reserve-unique-id" class="form-label">Party Size</label>
-                              <input type="text" class="form-control" id="reserve-party">
-                        </div>
-
-                        <button type="submit" class=" submit btn btn-primary">Submit</button>
-                  </div>
-            </div>
-   
-            <footer class="footer">
-                  <div class="container">
-                        <p><a href="#">API Table Link</a></p>
-                  </div>
-            </footer>
-       
-      </div>
+                  </div>    
+                  </div>  
+            </main>
+                
 </body>
 
 <script>
@@ -70,28 +78,63 @@
 
 var newReservation = {}
 
-            $('.submit').on("click", function(){
+            $('.submit-form').on("click", function(){
 
                   console.log("clicked")
+                  var inputArr = []
+                  $('.form-input').each(function(i){
+                        var input= $(this).val()
+                        var target = 'input-'+i 
+                        console.log(target)
+                       
+
+                        if(input == ""){
+                              console.log("empty")
+                              $('#' + target).parent().addClass("empty")
+                        } else{
+                              $('#' + target).parent().removeClass("empty")
+                              inputArr.push(input)
+                        }
+
+                  })
                   
-                  var newReservation  =  {
-                        customerFirst:  $('#reserve-first').val().trim(),
-                        customerLast:  $('#reserve-last').val().trim(),
-                        customerPhone:  $('#reserve-phone').val().trim(),
-                        customerEmail:  $('#reserve-email').val().trim(),
-                        customerParty:  $('#reserve-party').val().trim()
+                  console.log(inputArr)
+                  checkForm(inputArr)
+            })    
+
+            function checkForm(inputArr){
+
+                  let check = inputArr.length
+                  console.log(check)
+
+                  if(check == 5){
+
+                        var newReservation  =  {
+                        customerFirst:  $('#input-0').val().trim(),
+                        customerLast:  $('#input-1').val().trim(),
+                        customerPhone:  $('#input-2').val().trim(),
+                        customerEmail:  $('#input-3').val().trim(),
+                        customerParty:  $('#input-4').val().trim()
                   };
+                 
+                  sendData(newReservation)
 
-                 console.log(newReservation)
+                  }
 
-                 var currentURL = window.location.origin;
 
-                 $.post(currentURL + "/api/tables", newReservation, function(data){
 
-                  console.log("Data: ", data)
+            }
+               
+
+            function sendData(newReservation){
+                  var currentURL = window.location.origin;
+                   $.post(currentURL + "/api/tables", newReservation, function(data){
+
 
                   if (data) {
-                        alert("You are officially booked")
+                        $('.submit-form').addClass("submitted")
+                        $('.button-text').replaceWith('<div class="icon-container"><i class="far fa-check-circle fa-2x confirmed" ></i></div>')
+
                   }else{
                         alert("Reservations are full. You are now on the Waiting List")
                   }
@@ -104,11 +147,31 @@ var newReservation = {}
 
                  })
                  return false;
-            
-            })
+            }
 
+            //---------------- Make Buttons Active ----------------------
 
-            
+var buttons =  document.querySelectorAll('.tab-links');
+var activeClassName = 'active';
+
+for(var i = 0; i < buttons.length; i++) {
+    
+  buttons[i].addEventListener('click', function(e){
+
+      var buttonTarget = $(buttons).find("i")
+    activeState(buttonTarget, activeClassName);
+    e.target.classList.add(activeClassName);
+  });
+}
+
+function activeState(items, activeName) {
+  for(var i = 0; i < items.length; i++) {
+    if(items[i].classList.contains(activeName)) {
+      items[i].classList.remove(activeName);
+    }
+  }
+}
+
 
 </script>
 

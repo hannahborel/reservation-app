@@ -14,55 +14,77 @@
 </head>
 <body>
 
-      <div class="container-primary bg-style">
-            <div class="container-overlay bg-style">
-                  <div class="tables-wrapper">
-                        <header class="row">
-                              <div class="header-logo">
-                                   <p class="logo" style="color: #ae85bf;">slate</p>
-                             </div>
-                             <button class="header-icon"><i class="far fa-edit" style="color: #ae85bf;"></i></span></button>
-                        
-                                   </header>
-                        <div class="tables-dashboard">
-                              <div class="db-content">
-                        
-                                    <!--Current Tables -->
-                                    <div class="data-reservations">
-                                                <h1 class="db-title">Reservations</h1>
-                        
-                                                 <div id="tableSelection"> </div>
-                                           </div>
-                        
-                                    <!--Waiting List -->
-                                    <div class="data-waitlist">
-                                          <h1 class="db-title">Waitlist</h1>
-                                          <div class="wait-data-list">
-                        
-                                          </div>
-                                    </div>
-                              </div>
-                                                <div class="button-container"><a href ="#" id='clear'>Clear Reservations</a></div>
+      <div class="container">
+
+            <header class="header-logo row">
+                  <button class="header-icon"><i class="far fa-edit" style="color:#ffffff;"></i></span></button>
+            </header>
+            
+            <div class="dashboard">
+
+ <!-------------------Nav----------------- -->
+
+                  <div class="nav row">
+
+                              <button class="tab-links" id="home"><a href="/"><i class="fas fa-home fa-2x"></i></a></button>
+
+                              <button class="tab-links" id="reservations"><a href="/tables"><i class="fas fa-th-large fa-2x active"></i></a></button>
+
+                              <button class="tab-links" id="add-res"><a href="/reserve"><i class="fas fa-plus-square fa-2x"></i></a></button>
+                  
+                  </div>
+ <!------------- Dashboard Content  ---------- -->
+
+                  <div class="db-content">
+
+ <!--------- Empty Reservations Container ------->
+
+ <div class="no-res-container">
+       <h1>Reservations</h1>
+       <p>There are no reservaitions scheduled for toinight</p>
+      <a href="/reserve"> <button class="button">Add Reservation</button></a>
+ </div>
+                      
+  <!-------------Current Tables -------------->
+
+                              <section class="tables">
+
+                                          <h1 class="db-title">Reservations</h1>
+                  
+                                          <div id="tables-container"> </div>
+
+                              </section>
+
+<!-------------Scroll Buttons -------------->
+
+                              <section class="slider-buttons">
+
+                                          <button id="scroll-down"><i class="fas fa-chevron-down"></i></button>
+
+                                          <button id="scroll-up"><i class="fas fa-chevron-up"></i></button>
+                                  
+                              </section>
+
+<!-------------Waiting List -------------->
+
+                              <section class="waitlist">
+
+                                    <h1 class="db-title">Waitlist</h1>
+                                    <div class="waitlist-data row"></div>    
+
+                              </section>
+
+                  <button class="button-container button" id='clear'>Clear Reservations<a href ="#"></a></button>
                         
                           
-                                    </div>
-                              </div>
-                        
-
-                        <nav class = "nav--tables">
-                              <div class="nav-content row">
-                                    <button class="nav-button" id="home-btn"><a href="/"><i class="fas fa-home fa-2x" style="color: #C9C7C7;"></i></a>
-                                    </button>
-                                    <button class="nav-button is-active" id="tables-list-btn"><a href="/tables"><i class="fas fa-th-large fa-2x" style="color:#C0A4CB"></i></a>
-                                    </button>
-                                    <button class="nav-button" id="add-res-btn"><a href="/reserve"><i class="fas fa-plus-square fa-2x" style="color: #C9C7C7;"></i></i></a>
-                                    </button>
-                              </nav>
                   </div>
             </div>
+      </div>
 </body>
 
 <script>
+
+      
       function runTableQuery(){
       var currentURL = window.location.origin;
 
@@ -74,27 +96,45 @@
             console.log("-------------------")
             console.log("URL: " + currentURL + "/api/tables")
             console.log("-------------------")
-            console.log(tableData)
+            console.log("Table Data: ",tableData)
             console.log("-------------------")
 
+            if(tableData.tableArray.length == 0){
+                  $('.tables').hide()
+                  $('.waitlist').hide()
+                  $('.slider-buttons').hide()
+                  $('.button-container').hide()
+                  // $('.dashboard').css("background", "none")
+                  $(".no-res-container").show()
+                 
+            }
 
             for(var i =0; i < tableData.tableArray.length; i++){
 
                   console.log("Loop Data: ", tableData.tableArray[i])
 
-                  var tableSelection = $('<div>');
-                  tableSelection.addClass('db-data reservations row');
-                  tableSelection.attr('id', 'tableRes-' + i+1);
-                  $('#tableSelection').append(tableSelection)
+                  // Initialize Reservation Number
 
                   var tableNumber  =  i  +  1;
-
-                  if(tableNumber < 10){
-                    
-                      tableNumber = "0" + tableNumber
+                   if(tableNumber < 10){
+                        tableNumber = "0" + tableNumber
                   }
-                  $('#tableRes-' + i+1).append('<div class="res-position"> '+ tableNumber + '</div><div class="text-content"><h3 class="data-title">' + tableData.tableArray[i].customerFirst+ " " + tableData.tableArray[i].customerLast + '</h3><p class="data-result-primiary party">Party Size / '+  tableData.tableArray[i].customerParty+ '</p></div>' )
+                  
+                  // Create Reservation Container
+
+                  var resDataContainer = $('<div>');
+                   $('#tables-container').append(resDataContainer)
+                  resDataContainer.addClass('db-data reservations row');
+                  resDataContainer.attr('id', 'tableRes-' + i);
+            
+                
+                  // Append data to created conatiner 
+
+                  $('#tableRes-' + i).append('<div class="res-position"> '+ tableNumber + '</div><div class="text-content"><h3 class="data-title">' + tableData.tableArray[i].customerFirst+ " " + tableData.tableArray[i].customerLast + '</h3><p class="data-result-primiary party">Party Size: '+  tableData.tableArray[i].customerParty+ '</p></div>' )
             }
+
+            let numChildren = $("#tables-container").children().length
+            console.log("Number of Child Elements: ",numChildren)
       })
 }
 
@@ -119,16 +159,15 @@ function runWaitQuery(){
                   console.log(waitListData.waitingArray[i])
 
                   var waitSelection = $('<div>');
-                  waitSelection.addClass('waitlist-data');
+                  waitSelection.addClass('waitlist-item-container row');
                   waitSelection.attr('id', 'waitRes-' + i +1)
-                  $('.wait-data-list').append(waitSelection)
+                  $('.waitlist-data').append(waitSelection)
 
                   var waitingNum = i + 1;
-                  $('#waitRes-' + i+1).append('<div class="wait-item"> <span class="wait-position">' + waitingNum + '</span> <span class=" text-content wait-name">'+ waitListData.waitingArray[i].customerFirst + " " + waitListData.waitingArray[i].customerLast + '<span class="wait-party-size"> / '+ waitListData.waitingArray[i].customerParty+' </span> </div>');
+                  $('#waitRes-' + i+1).append('<span class="wait-num"> '+ waitingNum + "." +' </span><span class=" text-content wait-name">'+ waitListData.waitingArray[i].customerFirst[0] + ". " + waitListData.waitingArray[i].customerLast + '<span class="wait-party-size"> / '+ waitListData.waitingArray[i].customerParty+' </span>');
                   }
       })
 }
-
 
 
 function clearTable() {
@@ -137,10 +176,67 @@ function clearTable() {
     }
   
     $('#clear').on('click', function() {
-      alert("Clearing...");
       clearTable();
       location.reload();
     })
+
+
+    function getPosition(){
+
+      var height = $('#tables-container').height()
+      const position = $('.reservations').position().top
+      console.log(height, position)     
+      
+}
+
+
+$('#scroll-down').on('click', function(event){
+
+      getPosition()
+      var height = $('#tables-container').height()
+      var position = $('.reservations').position().top
+
+      console.log(height -position)
+      if(height - position <= 120){
+
+            $(".reservations").animate(
+            {"bottom" : "+=75px"}, "fast"
+            )
+      }
+})
+
+
+$('#scroll-up').on('click', function(event){
+      getPosition()
+      $(".reservations").animate(
+      {"bottom" : "-=75px"}, "fast"
+      )
+})
+
+//---------------- Make Buttons Active ----------------------
+
+var buttons =  document.querySelectorAll('.tab-links');
+var activeClassName = 'active';
+
+for(var i = 0; i < buttons.length; i++) {
+    
+  buttons[i].addEventListener('click', function(e){
+
+      var buttonTarget = $(buttons).find("i")
+    activeState(buttonTarget, activeClassName);
+    e.target.classList.add(activeClassName);
+  });
+}
+
+function activeState(items, activeName) {
+  for(var i = 0; i < items.length; i++) {
+    if(items[i].classList.contains(activeName)) {
+      items[i].classList.remove(activeName);
+    }
+  }
+}
+
+
 
 runTableQuery()
 runWaitQuery()
