@@ -7,7 +7,7 @@
       <script src="https://kit.fontawesome.com/8f9e2dfbe3.js" crossorigin="anonymous"></script>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="static/css/home.css"/>
       <script src="https://code.jquery.com/jquery.js"></script>
       <title>Document</title>
@@ -42,27 +42,15 @@
 
      <main class="container">
 
-           <header class="header-logo row">
-                 <button class="header-icon"><i class="far fa-edit" style="color:#ffffff;"></i></span></button>
-           </header>
 
            <div class="dashboard">
 
-            <!--------------------Tabs---------------------- -->
-            <div class="nav row">
 
-                  <button class="tab-links active" id="home"><a href="/" data-target="home.html"><i class="fas fa-home fa-2x active"></i></a></button>
-
-                  <button class="tab-links" id="reservations"><a href="/tables" data-target="tables.html"><i class="fas fa-th-large fa-2x"></i></a></button>
-
-                  <button class="tab-links" id="add-res"><a href="/reserve"><i class="fas fa-plus-square fa-2x"></i></a></button>
-      
-      </div>
  <!--------------------DB Content---------------------->
 
                  <div class="db-content">
                        
-                        <h1 class="db-title">Welcome Back</h1>
+                        <h1 class="db-title-home">Welcome Back</h1>
                         
 
                         <section class="data-primary row">
@@ -85,18 +73,22 @@
 
                         </section>
 
+                        <!-----------------TableData --------------->
+
                         <section class="db-data tertiary row" id="reservations">
 
                               <div class="text-content">
                                     <h3 class="data-title">Reservations</h3>
-                                    <p class="data-result-primiary"><span id="table-res-result"></span> Tables Reserved
+                                    <p class="data-result-primiary"><span id="table-res-result"></span> Tables Booked
                                     </p>
-                                          <div class="data-result-secondary" id="table-capacity"></div>
+                                    <button class="edit-icon"><i class="far fa-edit"></i></span></button>
                                </div>
 
                                <img src="static/assets/img/icons/squares-green-ai.png" alt="reservations icon" class="data-icon">
       
                         </section>
+
+<!---------Waitlist Data--------- -->
 
                         <section class="db-data tertiary row" id="waitList">
 
@@ -105,17 +97,24 @@
                                           <p class="data-result-primiary">
                                                 <span id="wait-list-result"></span> Patrons Waiting
                                           </p>
-                                          <div class="data-result-secondary" id="wait-capacity">
-                                          </div>
+                                          <button class="edit-icon"><i class="far fa-edit"></i></span></button>
                                     </div>
                                     
                                     <i><img src="static/assets/img/icons/waitlist-grey-ai.png" alt="reservations icon" class="data-icon"></i>
                                      
                          </section>
-
-                         
-               </div>
             </div>
+                            <!--------------------Tabs---------------------- -->
+                            <div class="nav row">
+
+                              <a href="" class="tab-links" id="home"><i class="fas fa-home fa-2x active"></i></a>
+
+                             <a href="/tables" id="tables" class="tab-links" data-target="tables.html"><i class="fas fa-th-large fa-2x"></i></a>
+
+                              <a href="/reserve" id="reserve" class="tab-links"><i class="fas fa-plus-square fa-2x"></i></a>
+                  
+                  </div>
+      
       </main>
 
      
@@ -140,10 +139,8 @@
                   let tableCapacity = tableData.capacity;
                   let tableBooked = tableData.tableArray.length;
 
-                         $('#table-res-result').append(tableBooked)
-                        //  $('#table-capacity-result').append(tableBooked + "/" + tableCapacity)
-
-                          $("#table-capacity").append("<span id='tables-booked-result'>Capacity </span><span id='table-capacity-result'>"+tableCapacity+"</span>")
+                         $('#table-res-result').append(tableBooked + "/" +tableCapacity)
+            
 
                          getTablePlaceholder(tableCapacity)
 
@@ -171,10 +168,7 @@ function runWaitQuery(){
                   let waitCapacity = waitListData.capacity;
                   let waitBooked = waitListData.waitingArray.length;
 
-                  $('#wait-list-result').append(waitBooked)
-                  // $('#wait-capacity-result').append(waitBooked + "/" + waitCapacity)
-
-                  $("#wait-capacity").append("<span id='wait-booked-result'>Capacity </span><span id='wait-capacity-result'>"+waitCapacity+"</span>")
+                  $('#wait-list-result').append(waitBooked + "/" + waitCapacity)
 
                   getWaitPlaceholder(waitCapacity)
 
@@ -288,7 +282,7 @@ function getWaitPlaceholder(waitlistLimit){
       $("#waitlist-input").attr("value", waitPlaceholder)
 }
 
-$(".header-icon").click(function(){
+$(".edit-icon").click(function(){
       console.log("menu clicked")
       $(".dashboard").css("visibility","hidden")
       $(".modal-container").show();
@@ -334,26 +328,11 @@ $(".submit-modal").click(function(){
 
 //---------------- Make Buttons Active ----------------------
 
-var buttons =  document.querySelectorAll('.tab-links');
-var activeClassName = 'active';
+$('.tab-links').mousedown(function(e){
+      console.log("click")
+$(e.currentTarget).children().addClass("active-click")    
+})
 
-for(var i = 0; i < buttons.length; i++) {
-    
-  buttons[i].addEventListener('click', function(e){
-
-      var buttonTarget = $(buttons).find("i")
-    activeState(buttonTarget, activeClassName);
-    e.target.classList.add(activeClassName);
-  });
-}
-
-function activeState(items, activeName) {
-  for(var i = 0; i < items.length; i++) {
-    if(items[i].classList.contains(activeName)) {
-      items[i].classList.remove(activeName);
-    }
-  }
-}
 
 
 

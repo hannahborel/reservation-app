@@ -15,24 +15,10 @@
 <body>
 
       <div class="container">
-
-            <header class="header-logo row">
-                  <button class="header-icon"><i class="far fa-edit" style="color:#ffffff;"></i></span></button>
-            </header>
             
-            <div class="dashboard">
+            <div class="dashboard" id="db-tables">
 
- <!-------------------Nav----------------- -->
 
-                  <div class="nav row">
-
-                              <button class="tab-links" id="home"><a href="/"><i class="fas fa-home fa-2x"></i></a></button>
-
-                              <button class="tab-links" id="reservations"><a href="/tables"><i class="fas fa-th-large fa-2x active"></i></a></button>
-
-                              <button class="tab-links" id="add-res"><a href="/reserve"><i class="fas fa-plus-square fa-2x"></i></a></button>
-                  
-                  </div>
  <!------------- Dashboard Content  ---------- -->
 
                   <div class="db-content">
@@ -74,10 +60,23 @@
 
                               </section>
 
-                  <button class="button-container button" id='clear'>Clear Reservations<a href ="#"></a></button>
+                  <button class="button-container button" id='clear'>Clear Bookings<a href ="#"></a></button>
                         
                           
                   </div>
+            
+     
+             <!-------------------Nav----------------- -->
+
+             <div class="nav row">
+
+                  <a href="/" class="tab-links"><i class="fas fa-home fa-2x"></i></a>
+
+                 <a href="/tables" class="tab-links"><i class="fas fa-th-large fa-2x active"></i></a>
+
+                 <a href="/reserve " class="tab-links"><i class="fas fa-plus-square fa-2x"></i></a>
+      
+            </div>
             </div>
       </div>
 </body>
@@ -130,7 +129,7 @@
                 
                   // Append data to created conatiner 
 
-                  $('#tableRes-' + i).append('<div class="res-position"> '+ tableNumber + '</div><div class="text-content"><h3 class="data-title">' + tableData.tableArray[i].customerFirst+ " " + tableData.tableArray[i].customerLast + '</h3><p class="data-result-primiary party">Party Size: '+  tableData.tableArray[i].customerParty+ '</p></div>' )
+                  $('#tableRes-' + i).append('<div class="res-position"> '+ tableNumber + '</div><div class="text-content"><h3 class="data-title">' + tableData.tableArray[i].customerFirst+ " " + tableData.tableArray[i].customerLast + '</h3><p class="party">Party Size: '+  tableData.tableArray[i].customerParty+ '</p></div>' )
             }
 
             let numChildren = $("#tables-container").children().length
@@ -153,6 +152,16 @@ function runWaitQuery(){
             console.log("-------------------")
             console.log("waitListData: ", waitListData)
             console.log("-------------------")
+
+            if(waitListData.waitingArray.length < 1){
+      
+                 for(var i = 0; i < waitListData.capacity; i++){
+                       console.log("hi")
+                  var waitSelection = $('<div>');
+                  waitSelection.addClass('waitlist-item-container row');
+                  $('.waitlist-data').append(waitSelection)
+                 }
+            }
 
             for(var i = 0; i < waitListData.waitingArray.length; i++){
 
@@ -215,26 +224,9 @@ $('#scroll-up').on('click', function(event){
 
 //---------------- Make Buttons Active ----------------------
 
-var buttons =  document.querySelectorAll('.tab-links');
-var activeClassName = 'active';
-
-for(var i = 0; i < buttons.length; i++) {
-    
-  buttons[i].addEventListener('click', function(e){
-
-      var buttonTarget = $(buttons).find("i")
-    activeState(buttonTarget, activeClassName);
-    e.target.classList.add(activeClassName);
-  });
-}
-
-function activeState(items, activeName) {
-  for(var i = 0; i < items.length; i++) {
-    if(items[i].classList.contains(activeName)) {
-      items[i].classList.remove(activeName);
-    }
-  }
-}
+$('.tab-links').mousedown(function(e){
+$(e.currentTarget).children().addClass("active-click")    
+})
 
 
 

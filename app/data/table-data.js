@@ -2,32 +2,32 @@ var tableObj= {
       capacity: 10,
       tableArray: [
 
-            {     customerFirst: 'Ahmed',
+            {     customerFirst: 'Michael',
                   customerLast: 'Smith',
                   phoneNumber: '000-000-000',
                   customerEmail: 'ahmed@example.com',
                   customerParty: '4',
                   
             },
-            {     customerFirst: 'Ahmed',
-                  customerLast: 'Smith',
+            {     customerFirst: 'Hannah',
+                  customerLast: 'Borel',
                   phoneNumber: '000-000-000',
                   customerEmail: 'ahmed@example.com',
-                  customerParty: '4',
+                  customerParty:'3',
                   
             },
-            {     customerFirst: 'Ahmed',
-                  customerLast: 'Smith',
+            {     customerFirst: 'Divina',
+                  customerLast: 'Villanueva',
                   phoneNumber: '000-000-000',
                   customerEmail: 'ahmed@example.com',
-                  customerParty: '4',
+                  customerParty: '5',
                   
             },
-            {     customerFirst: 'Ahmed',
-                  customerLast: 'Smith',
+            {     customerFirst: 'Thomas',
+                  customerLast: 'Ferron',
                   phoneNumber: '000-000-000',
                   customerEmail: 'ahmed@example.com',
-                  customerParty: '4',
+                  customerParty: '1',
                   
             }
 
