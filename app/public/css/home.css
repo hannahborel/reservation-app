@@ -86,7 +86,7 @@ h1{
 
 .nav {
       overflow: hidden;
-      position: absolute;
+      /* position: absolute; */
       justify-content: space-evenly;
       bottom: 1rem;
       padding: .5rem .75rem;
@@ -521,11 +521,6 @@ h1{
                         margin: 0 auto;
                         color: lightgray;
                   }
-
-                  body::-webkit-scrollbar {
-                        width: 5px;               /* width of the entire scrollbar */
-                      }
-
             
                         .waitlist-item-container{
                               background: white;
@@ -580,14 +575,6 @@ h1{
            transform: scale(0.95);
       }
 
-      .nav--tables{
-            opacity: 0.96;
-            background: #F8F7F6;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-      }
 
       /* -------------Reservations ------------ */
 
