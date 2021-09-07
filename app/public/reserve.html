@@ -58,7 +58,7 @@
 
                               <a href="/tables" class="tab-links" data-target="tables.html"><i class="fas fa-th-large fa-2x"></i></a>
 
-                             <a href="/reserve" class="tab-links"><i class="fas fa-plus-square fa-2x active"></i></a>
+                             <a href="/reserve" class="tab-links"><i class="fas fa-plus-square fa-2x" id="active"></i></a>
                   
                   </div>  
             </div>  
@@ -144,7 +144,7 @@ var newReservation = {}
             //---------------- Make Buttons Active ----------------------
 
             $('.tab-links').mousedown(function(e){
-                  $(e.currentTarget).children().addClass("active-click")    
+                  $(e.currentTarget).children().attr("id","active-click")    
 })
 
 

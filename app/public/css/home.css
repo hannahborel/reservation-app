@@ -104,12 +104,12 @@ h1{
                   padding-bottom: .25rem;
             }
 
-             .active{
+             #active{
                         color:#C0A4CB;
                         border-bottom: 2px solid #C0A4CB ;
                   }
 
-             .active-click{
+             #active-click{
                         color:white;
                   }
 
