@@ -113,9 +113,6 @@ var newReservation = {}
                   sendData(newReservation)
 
                   }
-
-
-
             }
                
 
@@ -125,11 +122,13 @@ var newReservation = {}
 
 
                   if (data) {
-                        $('.submit-form').addClass("submitted")
+                        $('.submit-form').addClass("submitted").css({'pointer-events':'none'})
                         $('.button-text').replaceWith('<div class="icon-container"><i class="far fa-check-circle fa-2x confirmed" ></i></div>')
+                        $(".form-input-container").css('border', "2px solid #b1d8b8")
 
-                  }else{
-                        alert("Reservations are full. You are now on the Waiting List")
+                        setTimeout(function(){
+                              window.location="/tables";
+                        }, 1000);
                   }
 
                   $('#reserve-first').val('')
@@ -147,6 +146,7 @@ var newReservation = {}
             $('.tab-links').mousedown(function(e){
                   $(e.currentTarget).children().addClass("active-click")    
 })
+
 
 
 

@@ -129,8 +129,8 @@
                 
                   // Append data to created conatiner 
 
-                  $('#tableRes-' + i).append('<div class="res-position"> '+ tableNumber + '</div><div class="text-content"><h3 class="data-title">' + tableData.tableArray[i].customerFirst+ " " + tableData.tableArray[i].customerLast + '</h3><p class="party">Party Size: '+  tableData.tableArray[i].customerParty+ '</p></div>' )
-            }
+                  $('#tableRes-' + i).append('<div class="res-position"> '+ tableNumber + '</div><div class="text-content"><h3 class="data-title">' + tableData.tableArray[i].customerFirst+ " " + tableData.tableArray[i].customerLast + '</h3><p class="party">Party Size: '+  tableData.tableArray[i].customerParty+ '</p></div><div class="table-edit"><button id="clear-table" value="'+i+'"><i class="far fa-times-circle"></i></button><button id="approve-table" value="'+i+'""><i class="far fa-check-circle"></i></button></div>' 
+                   )}
 
             let numChildren = $("#tables-container").children().length
             console.log("Number of Child Elements: ",numChildren)
@@ -152,36 +152,28 @@ function runWaitQuery(){
             console.log("-------------------")
             console.log("waitListData: ", waitListData)
             console.log("-------------------")
-
-            if(waitListData.waitingArray.length < 1){
-      
-                 for(var i = 0; i < waitListData.capacity; i++){
-                       console.log("hi")
-                  var waitSelection = $('<div>');
-                  waitSelection.addClass('waitlist-item-container row');
-                  $('.waitlist-data').append(waitSelection)
-                 }
-            }
-
             for(var i = 0; i < waitListData.waitingArray.length; i++){
 
-                  console.log(waitListData.waitingArray[i])
+            console.log(waitListData.waitingArray[i])
 
-                  var waitSelection = $('<div>');
-                  waitSelection.addClass('waitlist-item-container row');
-                  waitSelection.attr('id', 'waitRes-' + i +1)
-                  $('.waitlist-data').append(waitSelection)
+            var waitSelection = $('<div>');
+            waitSelection.addClass('waitlist-item-container row');
+            waitSelection.attr('id', 'waitRes-' + i +1)
+            $('.waitlist-data').append(waitSelection)
 
-                  var waitingNum = i + 1;
-                  $('#waitRes-' + i+1).append('<span class="wait-num"> '+ waitingNum + "." +' </span><span class=" text-content wait-name">'+ waitListData.waitingArray[i].customerFirst[0] + ". " + waitListData.waitingArray[i].customerLast + '<span class="wait-party-size"> / '+ waitListData.waitingArray[i].customerParty+' </span>');
-                  }
+            var waitingNum = i + 1;
+            $('#waitRes-' + i+1).append('<span class="wait-num"> '+ waitingNum + "." +' </span><span class=" text-content wait-name">'+ waitListData.waitingArray[i].customerFirst[0] + ". " + waitListData.waitingArray[i].customerLast + '<span class="wait-party-size"> / '+ waitListData.waitingArray[i].customerParty+' </span>');
+}
+
       })
 }
 
 
 function clearTable() {
       var currentURL = window.location.origin;
-      $.ajax({url: currentURL + "/api/clear", method: "POST"})
+      $.ajax({
+            url: currentURL + "/api/clear", 
+            method: "POST"})
     }
   
     $('#clear').on('click', function() {
@@ -222,6 +214,29 @@ $('#scroll-up').on('click', function(event){
       )
 })
 
+//---------------- Remove Class ----------------------
+
+$('body').on("click", "#clear-table", function(e){
+      var deleteObj = {
+            item: ""
+      }
+      var clearItem = $(this).attr("value")
+      deleteObj.item = clearItem
+      console.log(deleteObj)
+      deleteTable(deleteObj)
+      location.reload();
+
+    
+})
+
+function deleteTable(item){
+
+      var currentURL = window.location.origin;
+      $.post(currentURL + "/api/deleteTable",item,function(data){
+            console.log("Delete Table Resp: ", data)
+      })
+
+}
 //---------------- Make Buttons Active ----------------------
 
 $('.tab-links').mousedown(function(e){

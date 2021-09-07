@@ -1,5 +1,6 @@
 const database = require( "mime-db" );
 var tableData = require("../data/table-data");
+const waitingObj = require( "../data/waitinglist-data" );
 var waitListData = require("../data/waitinglist-data");
 
 module.exports = function(app) {
@@ -33,7 +34,7 @@ module.exports = function(app) {
         
           });
 
-          app.post("/api/updateCapacity", function(req, res){
+      app.post("/api/updateCapacity", function(req, res){
                 
            var capacityData = req.body
            console.log("New Table Capacity:",capacityData.table)
@@ -50,4 +51,20 @@ module.exports = function(app) {
 
           })
         
-}
+          app.post("/api/deleteTable", function(req, res){
+            console.log("Data Item Passed:",req.body.item)
+            tableData.tableArray.splice(req.body.item, 1)
+
+            if(waitListData.waitingArray.length>0){
+                let waitItem = waitListData.waitingArray[0]
+                tableData.tableArray.push(waitItem)
+                waitListData.waitingArray.splice(0, 1)
+
+                console.log("Table Array:",tableData.tableArray)
+                console.log("Waitlist Array",waitingObj.waitingArray)
+
+            }
+            res.json(true)
+          })
+
+      }

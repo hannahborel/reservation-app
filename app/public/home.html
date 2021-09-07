@@ -21,12 +21,12 @@
                         <p class="modal-title">Edit List Capacity</p>
                    </div>
                   <hr>
-                    <div class="input-container  row">
-                          <div class="input-content">
+                    <div class="edit-capacity-container  row">
+                          <div class="capacity-content">
                                 <label for="tables" id="label-table">Reservations</label>
                                 <input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" class="limit-input" id="table-input" maxlength="2" onfocus="this.value=''">
                           </div>
-                          <div class="input-content">
+                          <div class="capacity-content">
                                 <label for="waitlist" id="label-waitlist">Waitlist</label>
                                 <input type = "number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)" maxlength="2"  class="limit-input" id="waitlist-input" onfocus="this.value=''">
                           </div>
@@ -294,7 +294,9 @@ function editCapacityData(capacityObj){
 
       var currentURL = window.location.origin;
 
-      $.post(currentURL + "/api/updateCapacity", capacityObj, function(data){
+      $.post
+      (currentURL + "/api/updateCapacity", 
+      capacityObj, function(data){
       console.log("Data", data)
 
       
@@ -325,6 +327,8 @@ $(".submit-modal").click(function(){
       
 
 })
+
+
 
 //---------------- Make Buttons Active ----------------------
 
