@@ -488,7 +488,7 @@ h1{
                   }
 
                   #approve-table{
-                  padding: 0 0 0 .2rem;
+                  padding: 0 0 0 .75rem;
                   }
 
                   
@@ -506,8 +506,12 @@ h1{
                   }
 
             .waitlist{
-                  margin: .75rem 0 1rem;
+                  margin: .5rem 0 1.75rem;
             
+            }
+
+            .waitlist .db-title{
+                  margin-top: 0;
             }
       
                   .waitlist-data{
