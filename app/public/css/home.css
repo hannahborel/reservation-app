@@ -85,7 +85,8 @@ h1{
 .nav {
       overflow: hidden;
       justify-content: space-evenly;
-      bottom: 1rem;
+      position: relative;
+      bottom: -1rem;
       padding: .5rem .75rem;
       width: 100%;
       margin: 0 auto;
@@ -95,7 +96,7 @@ h1{
       }
             .tab-links{
              border: none;
-             padding: .75rem .75rem;
+             padding: .75rem 1rem;
             border-radius: 10px;
             }
 
@@ -479,6 +480,7 @@ h1{
                   .table-edit button{
                         border: none;
                         background:none;
+                        display: inline;
                        
                   }
 
