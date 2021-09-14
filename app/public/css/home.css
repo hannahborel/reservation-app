@@ -85,13 +85,13 @@ h1{
 .nav {
       overflow: hidden;
       justify-content: space-evenly;
-      position: relative;
+      bottom: 1.5rem;
+    position: absolute;
       padding: .5rem .75rem;
       width: 100%;
       margin: 0 auto;
       border: none;
       border-radius: 26.76px;
-      border-radius: 0 0 15px 15px;
       }
             .tab-links{
              border: none;
@@ -558,6 +558,7 @@ h1{
 
       .button{
             display: block;
+            margin: 0 auto;
             width: 50%;
             max-width: 170px;
             padding: .85rem .3rem;
@@ -683,9 +684,9 @@ h1{
                              background: #C0A4CB;
                         }
 
-                        .nav{
+                        /* .nav{
                               bottom: -1;
-                        }
+                        } */
                       }
                        
 
