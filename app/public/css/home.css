@@ -66,7 +66,7 @@ h1{
 
 
 .dashboard{
-      
+      position:relative;
       padding: 0 0 1rem;
       width: 95%;
       max-width: 300px;
@@ -92,6 +92,8 @@ h1{
       margin: 0 auto;
       border: none;
       border-radius: 26.76px;
+      left: 0;
+      right: 0;
       }
             .tab-links{
              border: none;
@@ -396,7 +398,7 @@ h1{
  }
 
  .slider-buttons{
-       margin: 1rem auto;
+       margin: 1rem auto .5rem;
        list-style: none;
        text-align: center;
        padding: 0;
@@ -503,7 +505,7 @@ h1{
                   }
 
             .waitlist{
-                  margin: .5rem 0 1.75rem;
+                  margin: .5rem 0 2rem;
             
             }
 
